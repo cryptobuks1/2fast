@@ -38,8 +38,6 @@ export default class Login extends Component {
                     this.stoptSpinnerLoad()
         }).catch( error => {
             this.stoptSpinnerLoad()
-            // 401 pass ผิด
-            // 404 user ผิด 
             if(error.response.status === 404){
                 this.setState({
                     message : error.response.data
