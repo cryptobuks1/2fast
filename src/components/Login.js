@@ -153,7 +153,7 @@ export default class Login extends Component {
                   </Button>
 
                 </form>
-                <img alt="logo" src={NokSoft} style={{width:"30%", marginTop: '30%', marginLeft:'auto', marginRight:'auto', display: "block"}} />
+                <img alt="logo" src={NokSoft} style={{width:"30%", marginTop: '25%', marginLeft:'auto', marginRight:'auto', display: "block"}} />
             </div>
         
         )
