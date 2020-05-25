@@ -6,8 +6,10 @@ import Col from 'react-bootstrap/Col'
 import Button from '@material-ui/core/Button'
 import unimageuser from '../image/unimageuser.jpg'
 import { Link } from "react-router-dom"
+import { withRouter } from "react-router-dom"
+import './header.css'
 
-export default class Header extends Component {
+class Header extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -51,6 +53,11 @@ export default class Header extends Component {
         }
     }
 
+    logout(){
+        localStorage.removeItem('user')
+        this.props.history.push('/login')
+    }
+
     render() {
         const {name, email, rolesName} = this.state
         const imageUser = {
@@ -65,11 +72,13 @@ export default class Header extends Component {
         }
         const widthLabel = {
             display:'block',
-            marginTop:'2%'
+            marginTop:'2%',
+            marginRight: 'auto',
+            marginLeft: 'auto'
     }
         return (
             /*  style={{position:'fixed', top:'0', overflow:'hidden'}}  */
-        <div style={{marginLeft:'5%'}}>
+        <div style={{marginTop:'5px'}}>
             <Row>
                 <Col >
                 <img alt="imageUser" src={unimageuser} style={imageUser}/>
@@ -79,22 +88,24 @@ export default class Header extends Component {
                     { this.showRoles(rolesName) }
                 </Col>
                 <Col>
-
-                    <Button onClick={() => this.props.onLogout() } style={styleButton}>Logout</Button>
-
+                    <Button onClick={ this.logout.bind(this)} style={styleButton}>Logout</Button>
                 </Col>
+ 
             </Row>
+            <hr />
             <Row>
-                <div>
-                <ul className="list-inline" style={widthLabel}>
+                <div className="list-inline" style={widthLabel}>
+                <ul>
                     <li className="list-inline-item"> <Link className="text-warning" to="/">Main</Link> </li>
                     <li className="list-inline-item">|</li>
                     <li className="list-inline-item"> <Link className="text-warning" to="/maintenancepage" >Maintenance Page</Link> </li>
-                    <li className="list-inline-item">|</li>
                 </ul>
                 </div>
             </Row>
+            
         </div>
         )
     }
 }
+
+export default withRouter(Header)

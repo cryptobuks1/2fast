@@ -13,7 +13,6 @@ export default class MaintenancePageTwo extends Component {
 
     onChange = e => {
         const { name, value } = e.target
-    
         this.setState({
           [name]: value
         })
@@ -32,7 +31,7 @@ export default class MaintenancePageTwo extends Component {
                 <MDBInput label="2-2" name="StepTwoFieldTwo" onChange={this.onChange}/>
             </form>
             <div className="container-fluid">
-            <Button variant=" btn-block btn-success" onClick={ () => this.sendData()}>ส่งข้อมูล</Button>{' '}
+            <Button variant="btn btn-block btn-success" onClick={ () => this.sendData()}>ส่งข้อมูล</Button>{' '}
             <br />
             </div>
         </div>
