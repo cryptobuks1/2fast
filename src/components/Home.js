@@ -9,7 +9,7 @@ export default class Home extends Component {
         this.state = {
 
         }
-        this.logout = this.logout.bind(this)
+        
     }
 
     componentDidMount(){
@@ -31,6 +31,7 @@ export default class Home extends Component {
     }
 
     logout(){
+        
         localStorage.removeItem('user')
         this.props.history.push('/login')
     }
@@ -38,7 +39,7 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-            <Header onLogout={this.logout} />
+            <Header onLogout={this.logout.bind(this)} />
 
             </div>
         )

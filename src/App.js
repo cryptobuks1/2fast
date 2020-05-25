@@ -2,9 +2,10 @@ import React, { Component } from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from './components/Home'
 import Login from './components/Login'
-import Protected from './components/Protected'
 import AuthenticatedComponent from './services/AuthenticatedComponent'
-import TestPage from './components/TestPage'
+
+import MaintenancePage from './components/maintenancePage/MaintenancePageOne'
+
 
 export default class App extends Component {
   render() {
@@ -15,8 +16,8 @@ export default class App extends Component {
           
           <AuthenticatedComponent>
             <Route exact path="/" component={Home} />
-            <Route exact path="/protected" component={Protected} />
-            <Route exact path="/TestPage" component={TestPage} />
+            <Route exact path="/maintenancepage" component={MaintenancePage} />
+
           </AuthenticatedComponent>
         </Switch>
       </BrowserRouter>

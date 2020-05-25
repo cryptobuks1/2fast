@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from '@material-ui/core/Button'
 import unimageuser from '../image/unimageuser.jpg'
+import { Link } from "react-router-dom"
 
 export default class Header extends Component {
     constructor(props){
@@ -62,9 +63,14 @@ export default class Header extends Component {
             backgroundColor:'#E8DA10',
             top:'10px'
         }
+        const widthLabel = {
+            display:'block',
+            marginTop:'2%'
+    }
         return (
-        <div>
-            <Row style={{position:'fixed', top:'0', overflow:'hidden'}}>
+            /*  style={{position:'fixed', top:'0', overflow:'hidden'}}  */
+        <div style={{marginLeft:'5%'}}>
+            <Row>
                 <Col >
                 <img alt="imageUser" src={unimageuser} style={imageUser}/>
                 </Col>
@@ -74,9 +80,19 @@ export default class Header extends Component {
                 </Col>
                 <Col>
 
-        <Button onClick={() => this.props.onLogout() } style={styleButton}>Logout</Button>
+                    <Button onClick={() => this.props.onLogout() } style={styleButton}>Logout</Button>
 
                 </Col>
+            </Row>
+            <Row>
+                <div>
+                <ul className="list-inline" style={widthLabel}>
+                    <li className="list-inline-item"> <Link className="text-warning" to="/">Main</Link> </li>
+                    <li className="list-inline-item">|</li>
+                    <li className="list-inline-item"> <Link className="text-warning" to="/maintenancepage" >Maintenance Page</Link> </li>
+                    <li className="list-inline-item">|</li>
+                </ul>
+                </div>
             </Row>
         </div>
         )
