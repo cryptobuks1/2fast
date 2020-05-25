@@ -7,7 +7,6 @@ import MaintenancePageThree from './MaintenancePageThree'
 import { Button } from 'react-bootstrap';
 
 export default class MaintenancePageOne extends Component {
-
     constructor(props){
         super(props)
         this.state = {
@@ -44,15 +43,24 @@ export default class MaintenancePageOne extends Component {
         })
       }
 
+      logout(){
+        localStorage.removeItem('user')
+        this.props.history.push('/login')
+      }
+
+
     render() {
+      const styleButton = {
+        backgroundColor:'#E8DA10',
+        top:'10px'
+    }
         return (
             <div>
             <Header />
-                <div className="container-fluid">
+                <div>
                     <MDBContainer>
       <MDBRow>
         <MDBCol xl="6" lg="7" md="10">
-          
             <MDBCardBody>
               <h2 className="text-center font-weight-bold pt-4 pb-5">
                 <strong>การติดตั้ง</strong>

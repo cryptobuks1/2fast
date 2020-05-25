@@ -82,7 +82,7 @@ export default class UploadImage extends Component {
         return (
           <div>
           
-          <div className="container-fluid">
+          <div>
           
           <form action="" method="post">
         <MDBInput label="สถานที่ติดตั้ง" name="locationToSetup" onChange={this.onChange}/>
@@ -104,7 +104,7 @@ export default class UploadImage extends Component {
         </ul>
 
         <div className="container-fluid">
-        <Button variant=" btn-block btn-success" onClick={ () => this.sendImage()}>ส่งข้อมูล</Button>{' '}
+        <Button variant="btn btn-block btn-success" onClick={ () => this.sendImage()}>ส่งข้อมูล</Button>{' '}
         <br />
         </div>
 

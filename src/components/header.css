@@ -1,0 +1,12 @@
+.some-fixed-page-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    background-color: #EEEE;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: calc(100% - 17px);
+    height: 75px;
+  }

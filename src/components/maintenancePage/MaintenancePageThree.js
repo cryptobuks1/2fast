@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import SignaturePad from 'react-signature-canvas'
 import styles from './stylesmodule.css'
-
+import { MDBInput } from "mdbreact"
+import { Button } from 'react-bootstrap';
 
 export default class MaintenancePageThree extends Component {
     constructor(props){
         super(props)
         this.state={
-            trimmedDataURL: null
+            trimmedDataURL: null,
+            SignatureName: ''
         }
     }
 
@@ -23,11 +25,34 @@ export default class MaintenancePageThree extends Component {
             .toDataURL('image/png')
     })
     }
+
+    onChange = e => {
+      const { name, value } = e.target
+  
+      this.setState({
+        [name]: value
+      })
+    }
+
+  submit(e){
+    console.log(this.state.SignatureName)
+  }
     render () {
-      const {trimmedDataURL} = this.state
+      const { trimmedDataURL, SignatureName} = this.state
+      const widthLabel = {
+        width:'280px',
+        display:'block',
+        marginLeft:'auto', 
+        marginRight:'auto'
+}
       return(
-        <div className={styles.container}>
-        <div className={styles.sigContainer}>
+        <div>
+        <form  onSubmit={ e => this.submit(e) }>
+          <MDBInput label="ชื่อผู้ดูแลสถานที่ติดตั้ง" name="SignatureName" type="text" onChange={this.onChange}/>
+            <Button variant="btn btn-block btn-success" type="submit" fullWidth color="primary"> ส่งชื่อ </Button>
+        </form>
+        
+      { /*  <div className={styles.sigContainer}>
           <SignaturePad 
           canvasProps={{className: styles.sigPad}}
             ref={(ref) => { this.sigPad = ref }} 
@@ -35,14 +60,9 @@ export default class MaintenancePageThree extends Component {
             />
         </div>
         <div>
-          <button className={styles.buttons} onClick={this.clear}>
-            Clear
-          </button>
-          <button className={styles.buttons} onClick={this.trim}>
-            Trim
-          </button>
+          
         </div>
-        {trimmedDataURL ? <img className={styles.sigImage} src={trimmedDataURL} /> : null}
+      {trimmedDataURL ? <img src="sig" className={styles.sigImage} src={trimmedDataURL} /> : null}  */}
       </div>
       )
     }
