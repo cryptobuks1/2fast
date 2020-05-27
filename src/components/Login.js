@@ -135,7 +135,6 @@ export default class Login extends Component {
                   style={{backgroundColor:'#E8DA10', marginTop:'5px', height:' 45px', width:'280px', display:'block',marginLeft:'auto', marginRight:'auto',}}
                     type="submit"
                     fullWidth
-                    type="submit"
                     variant="contained"
                     color="primary"
                   >

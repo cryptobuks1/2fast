@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import Header from '../Header'
 import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBCardBody, MDBInput } from "mdbreact"
 import UploadImage from './UploadImage'
-import MaintenancePageTwo from './MaintenancePageTwo'
-import MaintenancePageThree from './MaintenancePageThree'
+import MaintenanceTwo from './MaintenanceTwo'
+import MaintenanceThree from './MaintenanceThree'
 import { Button } from 'react-bootstrap';
 
-export default class MaintenancePageOne extends Component {
+export default class MaintenanceOne extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -116,7 +116,7 @@ export default class MaintenancePageOne extends Component {
                     <h3 className="font-weight-bold pl-0 my-4">
                       <strong>ขั้นที่ 2</strong>
                     </h3>
-                    <MaintenancePageTwo />
+                    <MaintenanceTwo />
                     <Button color="warning" rounded className="float-left" onClick={this.handleNextPrevClick(1)(1)}>
                     ย้อนกลับ
                     </Button>
@@ -132,7 +132,7 @@ export default class MaintenancePageOne extends Component {
                       <strong>ขั้นที่ 3</strong>
                     </h3>
                     
-                    <MaintenancePageThree />
+                    <MaintenanceThree />
                     <div>
                     <Button color="warning" rounded className="float-left" onClick={this.handleNextPrevClick(1)(2)}
                     autoFocus={this.calculateAutofocus(1)}>
