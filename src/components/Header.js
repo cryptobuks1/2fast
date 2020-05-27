@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { getjwt } from '../components/helpers/jwt'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Button from '@material-ui/core/Button'
 import unimageuser from '../image/unimageuser.jpg'
 import { Link } from "react-router-dom"
 import { withRouter } from "react-router-dom"
 import './header.css'
+import IconSwipeableDrawer from './swipeableDrawer/IconSwipeableDrawer'
 
 class Header extends Component {
     constructor(props){
@@ -61,10 +60,15 @@ class Header extends Component {
     render() {
         const {name, email, rolesName} = this.state
         const imageUser = {
-            width:'100%', 
+            width:'50%', 
             borderRadius: '50%', 
             padding:'10px',
-            top:'10px' 
+            top:'10px' ,
+            marginRight:'auto',
+            marginLeft:'auto'
+        }
+        const divImageUser = {
+            width:'30%'
         }
         const styleButton = {
             backgroundColor:'#E8DA10',
@@ -78,30 +82,33 @@ class Header extends Component {
     }
         return (
             /*  style={{position:'fixed', top:'0', overflow:'hidden'}}  */
-        <div style={{marginTop:'5px'}}>
-            <Row>
-                <Col >
-                <img alt="imageUser" src={unimageuser} style={imageUser}/>
-                </Col>
-                <Col style={{top:'10px'}}>
+        <div className="container-fluid" style={{marginTop:'5px'}}>
+            <div className="row">
+                <div className="col-5 col-md-5" style={divImageUser}>
+                    <img alt="imageUser" src={unimageuser} style={imageUser}/>
+                </div>
+                <div className="col-5 col-md-5" style={{top:'10px'}}>
                     <p>{name}</p>
                     { this.showRoles(rolesName) }
-                </Col>
-                <Col>
-                    <Button onClick={ this.logout.bind(this)} style={styleButton}>Logout</Button>
-                </Col>
+                </div>
+                <div className="col-2 col-md-2">
+        { /*   <Button onClick={ this.logout.bind(this)} style={styleButton}>Logout</Button> */}
+
+                <IconSwipeableDrawer onLogout={this.logout}  />
+
+                </div>
  
-            </Row>
+            </div>
             <hr />
-            <Row>
-                <div className="list-inline" style={widthLabel}>
+            <div className="row">
+                <div className="list-inline text-center col-md-12" style={widthLabel}>
                 <ul>
                     <li className="list-inline-item"> <Link className="text-warning" to="/">Main</Link> </li>
                     <li className="list-inline-item">|</li>
-                    <li className="list-inline-item"> <Link className="text-warning" to="/maintenancepage" >Maintenance Page</Link> </li>
+                    <li className="list-inline-item"> <Link className="text-warning" to="/maintenance" >Maintenance Page</Link> </li>
                 </ul>
                 </div>
-            </Row>
+            </div>
             
         </div>
         )

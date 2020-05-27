@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button } from 'react-bootstrap';
 import { MDBInput } from "mdbreact"
 
-export default class MaintenancePageTwo extends Component {
+export default class MaintenanceTwo extends Component {
     constructor(props){
         super(props)
         this.state = {

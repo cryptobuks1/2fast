@@ -4,7 +4,7 @@ import styles from './stylesmodule.css'
 import { MDBInput } from "mdbreact"
 import { Button } from 'react-bootstrap';
 
-export default class MaintenancePageThree extends Component {
+export default class MaintenanceThree extends Component {
     constructor(props){
         super(props)
         this.state={

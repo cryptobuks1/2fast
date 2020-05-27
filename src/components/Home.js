@@ -32,24 +32,21 @@ class Home extends Component {
         })
     }
 
-    logout(){
-        
-        localStorage.removeItem('user')
-        this.props.history.push('/login')
-    }
-
     render() {
         const styleButton = {
             backgroundColor:'#E8DA10',
             top:'10px'
         }
         const oudddt = {
-            position:'absolute'
+            position:'relative',
+            width: '100%'
             
         }
         const iinnnn = {
-            position:'absolute',
-            float: 'right'
+            position:'relative',
+            float: 'left',
+            clear: 'both' ,
+            width:'100%'
             
         }
         return (
@@ -58,23 +55,23 @@ class Home extends Component {
             <h2 className="text-center">
                 งานที่ต้องติดตั้ง
             </h2>
-        <div style={{oudddt}}>
+        <div style={oudddt}>
 
-           <div style={{iinnnn}}>
-           <Link className="text-warning" to="/maintenancepage">
-                <Alert variant="success" style={{width:'30%'}}> งานที่โรงพยาบาล </Alert>
+           <div style={iinnnn}>
+           <Link className="text-warning" to="/maintenance">
+                <Alert variant="success" > งานที่โรงพยาบาล </Alert>
             </Link>
            </div>
 
-           <div style={{iinnnn}}>
-           <Link className="text-warning" to="/maintenancepage">
-                <Alert variant="success" style={{width:'30%'}}> งานที่โรงพยาบาล </Alert>
+           <div style={iinnnn}>
+           <Link className="text-warning" to="/maintenance">
+                <Alert variant="success" > งานที่เรือนจำ </Alert>
             </Link>
            </div>
 
-           <div style={{iinnnn}}>
-           <Link className="text-warning" to="/maintenancepage">
-                <Alert variant="danger" style={{width:'30%'}}> งานที่โรงพยาบาล </Alert>
+           <div style={iinnnn}>
+           <Link className="text-warning" to="/maintenance">
+                <Alert variant="danger" > งานที่โรงพยาบาล </Alert>
             </Link>
            </div>
         </div>

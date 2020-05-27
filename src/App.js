@@ -4,7 +4,7 @@ import Home from './components/Home'
 import Login from './components/Login'
 import AuthenticatedComponent from './services/AuthenticatedComponent'
 
-import MaintenancePage from './components/maintenancePage/MaintenancePageOne'
+import Maintenance from './components/maintenance/MaintenanceOne'
 
 
 export default class App extends Component {
@@ -16,7 +16,7 @@ export default class App extends Component {
           
           <AuthenticatedComponent>
             <Route exact path="/" component={Home} />
-            <Route exact path="/maintenancepage" component={MaintenancePage} />
+            <Route exact path="/maintenance" component={Maintenance} />
 
           </AuthenticatedComponent>
         </Switch>
