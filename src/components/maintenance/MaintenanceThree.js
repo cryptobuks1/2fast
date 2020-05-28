@@ -50,6 +50,7 @@ export default class MaintenanceThree extends Component {
         <form  onSubmit={ e => this.submit(e) }>
           <MDBInput label="ชื่อผู้ดูแลสถานที่ติดตั้ง" name="SignatureName" type="text" onChange={this.onChange}/>
             <Button variant="btn btn-block btn-success" type="submit" fullWidth color="primary"> ส่งชื่อ </Button>
+            <br />
         </form>
         
       { /*  <div className={styles.sigContainer}>

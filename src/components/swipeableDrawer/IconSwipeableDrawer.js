@@ -7,6 +7,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { RiLogoutCircleLine } from 'react-icons/ri';
+import PersonIcon from '@material-ui/icons/Person';
+import { Link } from "react-router-dom"
+import ListIcon from '@material-ui/icons/List';
+import WorkIcon from '@material-ui/icons/Work';
 
 class IconSwipeableDrawer extends Component {
   state = {
@@ -95,30 +99,50 @@ class IconSwipeableDrawer extends Component {
 
                 <div style={{ backgroundColor: `rgba(255,249,167, ${per})`,
                 width: "100%",
-                height: "100%"
+                height: "100%",
+                position:'relative'
                 }} >
+
       <List component="nav" aria-label="main mailbox folders">
-        <ListItem
-          button
-         
-          
-        >
-          <ListItemText primary="PROFILE" />
+        <Link className="text-warning" to="/profile" >
+          <ListItem button>
+            <PersonIcon size="30px" />
+              <ListItemText primary="PROFILE" />
         </ListItem>
+        </Link>
       </List>
 
       <Divider />
-     
-      <List component="nav" aria-label="secondary mailbox folder">
-        <ListItem
-          button
-          onClick={() => this.props.onLogout()}
 
-        >
-        <RiLogoutCircleLine   size="30px" />
-          <ListItemText primary="LOGOUT" />
+      <List component="nav" aria-label="main mailbox folders">
+        <Link className="text-warning" to="/" >
+          <ListItem button>
+            <WorkIcon size="30px" />
+              <ListItemText primary="Maintenance Job" />
+        </ListItem>
+        </Link>
+      </List>
+      
+      <Divider />
+
+      <List component="nav" aria-label="main mailbox folders">
+        <Link className="text-warning" to="/maintenance" >
+          <ListItem button>
+            <ListIcon size="30px" />
+              <ListItemText primary="Maintenance List" />
+        </ListItem>
+        </Link>
+      </List>
+      
+      <Divider />
+
+      <List component="nav" aria-label="secondary mailbox folder" style={{position:'absolute', left:'0', bottom:'0'}}>
+        <ListItem button onClick={() => this.props.onLogout()} >
+          <RiLogoutCircleLine fontSize="large" size="30px" />
+            <ListItemText primary="LOGOUT" />
         </ListItem>
       </List>
+
     </div>
 
             

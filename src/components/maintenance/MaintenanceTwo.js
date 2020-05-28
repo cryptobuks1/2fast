@@ -27,8 +27,9 @@ export default class MaintenanceTwo extends Component {
         return (
         <div>
             <form action="" method="post">
-                <MDBInput label="2-1" name="StepTwoFieldOne" onChange={this.onChange}/>
-                <MDBInput label="2-2" name="StepTwoFieldTwo" onChange={this.onChange}/>
+                <MDBInput label="ปัญหาที่พบเจอ" name="StepTwoFieldOne" onChange={this.onChange}/>
+                <h6>วิธีแก้ไข</h6>
+                <MDBInput label="วิธีแก้ไข" name="StepTwoFieldTwo" onChange={this.onChange}/>
             </form>
             <div className="container-fluid">
             <Button variant="btn btn-block btn-success" onClick={ () => this.sendData()}>ส่งข้อมูล</Button>{' '}
