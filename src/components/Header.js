@@ -7,6 +7,7 @@ import { Link } from "react-router-dom"
 import { withRouter } from "react-router-dom"
 import './header.css'
 import IconSwipeableDrawer from './swipeableDrawer/IconSwipeableDrawer'
+import Profile from './Profile'
 
 class Header extends Component {
     constructor(props){
@@ -83,6 +84,11 @@ class Header extends Component {
         return (
             /*  style={{position:'fixed', top:'0', overflow:'hidden'}}  */
         <div className="container-fluid" style={{marginTop:'5px'}}>
+        {
+            (!Profile) &&
+                 <h1>not profie</h1>
+            
+        }
             <div className="row">
                 <div className="col-5 col-md-5" style={divImageUser}>
                     <img alt="imageUser" src={unimageuser} style={imageUser}/>
@@ -100,15 +106,7 @@ class Header extends Component {
  
             </div>
             <hr />
-            <div className="row">
-                <div className="list-inline text-center col-md-12" style={widthLabel}>
-                <ul>
-                    <li className="list-inline-item"> <Link className="text-warning" to="/">Main</Link> </li>
-                    <li className="list-inline-item">|</li>
-                    <li className="list-inline-item"> <Link className="text-warning" to="/maintenance" >Maintenance Page</Link> </li>
-                </ul>
-                </div>
-            </div>
+            
             
         </div>
         )

@@ -5,6 +5,8 @@ import UploadImage from './UploadImage'
 import MaintenanceTwo from './MaintenanceTwo'
 import MaintenanceThree from './MaintenanceThree'
 import { Button } from 'react-bootstrap';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 export default class MaintenanceOne extends Component {
     constructor(props){
@@ -55,12 +57,12 @@ export default class MaintenanceOne extends Component {
         top:'10px'
     }
         return (
-            <div>
+            <div className="container-fluid">
             <Header />
                 <div>
                     <MDBContainer>
       <MDBRow>
-        <MDBCol xl="6" lg="7" md="10">
+        <MDBCol xl="12" lg="12" md="12">
             <MDBCardBody>
               <h2 className="text-center font-weight-bold pt-4 pb-5">
                 <strong>การติดตั้ง</strong>
@@ -100,13 +102,13 @@ export default class MaintenanceOne extends Component {
                   {this.state.formActivePanel1 === 1 && (
                   <MDBCol md="12">
                     <h3 className="font-weight-bold pl-0 my-4">
-                      <strong>ขั้นที่ 1</strong>
+                      <strong>สถานที่ติดตั้ง</strong>
                     </h3>
 
                     <UploadImage />
                     
                     <Button color="primary" rounded className="float-right" onClick={this.handleNextPrevClick(1)(2)}>
-                      ต่อไป
+                      <ArrowForwardIcon />
                     </Button>
                   </MDBCol>
                   )}
@@ -114,15 +116,17 @@ export default class MaintenanceOne extends Component {
                   {this.state.formActivePanel1 === 2 && (
                   <MDBCol md="12">
                     <h3 className="font-weight-bold pl-0 my-4">
-                      <strong>ขั้นที่ 2</strong>
+                      <strong>ปัญหาที่พบเจอขณะติดตั้ง</strong>
                     </h3>
                     <MaintenanceTwo />
+
                     <Button color="warning" rounded className="float-left" onClick={this.handleNextPrevClick(1)(1)}>
-                    ย้อนกลับ
+                    <ArrowBackIcon />
                     </Button>
                     <Button color="primary" rounded className="float-right" onClick={this.handleNextPrevClick(1)(3)}>
-                      ต่อไป
+                    <ArrowForwardIcon />
                     </Button>
+                    
                   </MDBCol>
                   )}
 
@@ -133,12 +137,12 @@ export default class MaintenanceOne extends Component {
                     </h3>
                     
                     <MaintenanceThree />
-                    <div>
+                    
                     <Button color="warning" rounded className="float-left" onClick={this.handleNextPrevClick(1)(2)}
                     autoFocus={this.calculateAutofocus(1)}>
-                    ย้อนกลับ
-                  </Button>
-                    </div>
+                    <ArrowBackIcon />
+                    </Button>
+                   
                   </MDBCol>
                   )}
 

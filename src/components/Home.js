@@ -50,7 +50,7 @@ class Home extends Component {
             
         }
         return (
-            <div>
+            <div className="container-fluid">
             <Header />
             <h2 className="text-center">
                 งานที่ต้องติดตั้ง
