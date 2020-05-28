@@ -15,8 +15,8 @@ class Header extends Component {
             name : '',
             email : '',
             rolesName : []
-
         }
+        this.logout = this.logout.bind(this)
         
     }
 
