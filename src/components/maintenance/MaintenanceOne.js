@@ -58,13 +58,15 @@ export default class MaintenanceOne extends Component {
     }
         return (
             <div className="container-fluid">
+            <div>
             <Header />
+            </div>
                 <div>
                     <MDBContainer>
       <MDBRow>
         <MDBCol xl="12" lg="12" md="12">
             <MDBCardBody>
-              <h2 className="text-center font-weight-bold pt-4 pb-5">
+              <h2 className="text-center font-weight-bold">
                 <strong>การติดตั้ง</strong>
               </h2>
               <MDBStepper form>

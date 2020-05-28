@@ -39,15 +39,10 @@ export default class MaintenanceThree extends Component {
   }
     render () {
       const { trimmedDataURL, SignatureName} = this.state
-      const widthLabel = {
-        width:'280px',
-        display:'block',
-        marginLeft:'auto', 
-        marginRight:'auto'
-}
+      
       return(
         <div>
-        <form  onSubmit={ e => this.submit(e) }>
+        <form onSubmit={ e => this.submit(e) }>
           <MDBInput label="ชื่อผู้ดูแลสถานที่ติดตั้ง" name="SignatureName" type="text" onChange={this.onChange}/>
             <Button variant="btn btn-block btn-success" type="submit" fullWidth color="primary"> ส่งชื่อ </Button>
             <br />

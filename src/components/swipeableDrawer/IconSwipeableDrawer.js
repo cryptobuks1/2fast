@@ -67,7 +67,7 @@ class IconSwipeableDrawer extends Component {
     return (
       <div>
         <div>
-          <MenuIcon fontSize="large"  onClick={() => this.setState({ openLeft: !openLeft })} style={{marginTop:'20%', marginRight :'0%'}}/>
+          <MenuIcon fontSize="large"  onClick={() => this.setState({ openLeft: !openLeft })}/>
         </div>
 
         {
