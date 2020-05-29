@@ -39,7 +39,7 @@ class Home extends Component {
         }
         const oudddt = {
             position:'relative',
-            width: '100%'
+            width: '100%',
             
         }
         const iinnnn = {
@@ -52,9 +52,10 @@ class Home extends Component {
         return (
             <div className="container-fluid">
             <Header />
-            <h2 className="text-center">
+            <h2 className="text-center" style={{marginTop:'5%'}}>
                 งานที่ต้องติดตั้ง
             </h2>
+            <br />
         <div style={oudddt}>
 
            <div style={iinnnn}>

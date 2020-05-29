@@ -61,7 +61,7 @@ export default class MaintenanceOne extends Component {
             <div>
             <Header />
             </div>
-                <div>
+                <div style={{marginTop:'5%'}}>
                     <MDBContainer>
       <MDBRow>
         <MDBCol xl="12" lg="12" md="12">
@@ -69,6 +69,7 @@ export default class MaintenanceOne extends Component {
               <h2 className="text-center font-weight-bold">
                 <strong>การติดตั้ง</strong>
               </h2>
+              <br />
               <MDBStepper form>
                 <MDBStep form>
                   <span onClick={this.swapFormActive(1)(1)}>
