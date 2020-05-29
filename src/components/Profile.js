@@ -50,31 +50,36 @@ export default class Profile extends Component {
         const {name, email, rolesName} = this.state
         const imageUser = {
             width:'50%', 
+            maxWidth: '250px',
             borderRadius: '50%', 
             padding:'10px',
             top:'10px' ,
             marginRight:'auto',
             marginLeft:'auto'
         }
-        const divImageUser = {
-            width:'30%'
-        }
+        
         return (
         <div className="container-fluid">
             <div className="row">
-            <div className="col-2 col-md-2">
-               <Header />
+                <div className="col-2 col-md-2">
+                    <Header />
+                </div>                
             </div>
 
-            
-                <div className="col-5 col-md-5" style={divImageUser}>
+            <div className="row">
+                <div className="col-12 col-md-12 text-center">
                     <img alt="imageUser" src={unimageuser} style={imageUser}/>
                 </div>
-                <div className="col-5 col-md-5" style={{top:'10px'}}>
-                    <p>{name}</p>
-                    { this.showRoles(rolesName) }
+            </div>
+            
+            <div className="row">
+                <div className="col-4 col-md-4"></div>
+                <div className="col-8 col-md-8" style={{top:'10px'}}>
+                    <p class="font-weight-bold">{name}</p>
+                    <p class="font-weight-bold">{ this.showRoles(rolesName) }</p>
                 </div>
-                </div>
+            </div>
+            
         </div>
         )
     }

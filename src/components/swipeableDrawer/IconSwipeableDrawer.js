@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Drawer from 'react-motion-drawer';
 import MenuIcon from '@material-ui/icons/Menu'
-import Button from '@material-ui/core/Button'
+
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -64,6 +64,7 @@ class IconSwipeableDrawer extends Component {
       width:'100%'
 
   }
+
     return (
       <div>
         <div>
@@ -103,7 +104,7 @@ class IconSwipeableDrawer extends Component {
                 position:'relative'
                 }} >
 
-      <List component="nav" aria-label="main mailbox folders">
+      <List component="nav" aria-label="main mailbox folders" >
         <Link className="text-warning" to="/profile" >
           <ListItem button>
             <PersonIcon size="30px" />
@@ -125,8 +126,8 @@ class IconSwipeableDrawer extends Component {
       
       <Divider />
 
-      <List component="nav" aria-label="main mailbox folders">
-        <Link className="text-warning" to="/maintenance" >
+      <List component="nav" aria-label="secondary mailbox folders">
+        <Link className="text-muted" to="/maintenance" >
           <ListItem button>
             <ListIcon size="30px" />
               <ListItemText primary="Maintenance List" />

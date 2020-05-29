@@ -24,7 +24,7 @@ export default class UploadImage extends Component {
       }
 
       showNameImageUpload(pictures){
-        if(!pictures || pictures.length == 0){
+        if(!pictures || pictures.length === 0){
           return (
           <div>
             <p>อัพโหลดรูปภาพ</p>
@@ -50,7 +50,7 @@ export default class UploadImage extends Component {
       }
 
       showImageUpload(img){
-        if(!img || img.length == 0){
+        if(!img || img.length === 0){
 
         } else {
         return  img.map( pic => {
