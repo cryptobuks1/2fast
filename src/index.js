@@ -8,8 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'mdbreact/dist/css/mdb.css';
-
-import 'semantic.min.css'
+import 'semantic-ui-css/semantic.min.css'
 
 
 ReactDOM.render(
