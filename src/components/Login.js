@@ -3,7 +3,7 @@ import axios from 'axios'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import logo from '../image/newFast.png'
-import NokSoft from '../image/image.jpg'
+import NokSoft from '../image/newLogo.jpg'
 import Spinner from 'react-bootstrap/Spinner'
 
 export default class Login extends Component {
@@ -152,7 +152,9 @@ export default class Login extends Component {
                   </Button>
 
                 </form>
-                <img alt="logo" src={NokSoft} style={{width:"30%", marginTop: '25%', marginLeft:'auto', marginRight:'auto', display: "block"}} />
+                <div style={{position:'relative',display:'table'}}>
+                <img alt="logo" className="fixed-bottom" src={NokSoft} style={{width:"30%", marginLeft:'auto', marginRight:'auto', display: "block"}} />
+                </div>
             </div>
         
         )

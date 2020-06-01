@@ -19,11 +19,15 @@
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
     "react-images-upload": "^1.2.8",
+    "react-js-stepper": "^1.2.6",
+    "react-material-stepper": "^1.0.0",
     "react-motion-drawer": "^3.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-signature-canvas": "^1.0.3",
     "react-validation": "^3.0.7",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.2",
     "validator": "^13.0.0"
   },
   "scripts": {

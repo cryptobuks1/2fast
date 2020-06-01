@@ -99,7 +99,7 @@ export default class MaintenanceOne extends Component {
                 </MDBStep>
               </MDBStepper>
 
-              <form action="" method="post">
+              <form>
                 <MDBRow>
 
                   {this.state.formActivePanel1 === 1 && (
@@ -136,7 +136,7 @@ export default class MaintenanceOne extends Component {
                   {this.state.formActivePanel1 === 3 && (
                   <MDBCol md="12">
                     <h3 className="font-weight-bold pl-0 my-4">
-                      <strong>ขั้นที่ 3</strong>
+                      <strong>ประเมินความพึงพอใจการติดตัง</strong>
                     </h3>
                     
                     <MaintenanceThree />
