@@ -12,26 +12,13 @@ export default class MaintenanceThree extends Component {
             trimmedDataURL: null,
             SignatureName: '',
             valueStar : ' ',
-            messageRating : 'โปรดประเมินการติดตั้ง'
+            messageRating : 'โปรดประเมินการติดตั้ง',
+            suggestion : ' '
         }
-    }
-
-    sigPad = {}
-
-    clear = () => {
-      this.sigPad.clear()
-    }
-
-    trim = () => {
-      this.setState({
-          trimmedDataURL: this.sigPad.getTrimmedCanvas()
-            .toDataURL('image/png')
-    })
     }
 
     onChange = e => {
       const { name, value } = e.target
-  
       this.setState({
         [name]: value
       })
@@ -68,28 +55,33 @@ export default class MaintenanceThree extends Component {
           }
     }
 
-  submit(e){
-    alert(this.state.SignatureName ," ", this.state.valueStar)
-  }
+    sendDataThree(){
+        console.log('SignatureName = '+this.state.SignatureName)
+        console.log('valueStar = '+ this.state.valueStar)
+        console.log('suggestion = '+  this.state.suggestion)
+    }
     render () {
       const { trimmedDataURL, SignatureName, messageRating} = this.state
       
       return(
         <div>
-        <form onSubmit={ e => this.submit(e) }>
-          <MDBInput label="ชื่อผู้ดูแลสถานที่ติดตั้ง" name="SignatureName" type="text" onChange={this.onChange}/>
-          
+        <form>
+          <MDBInput label="ชื่อผู้ดูแลสถานที่ติดตั้ง" name="SignatureName" onChange={this.onChange}/>
+        </form>
+          <br />
           <div>
           {messageRating}
         </div>
-        
         <div>
           <Rating maxRating={5} icon='star' size='massive' onRate={this.handleRate}/>
         </div>
-
-            <Button variant="btn btn-block btn-success" type="submit" fullWidth color="primary"> ส่งชื่อ </Button>
-            <br />
+        <form>
+        <MDBInput label="ข้อเสนอแนะ" name="suggestion" onChange={this.onChange}/>
         </form>
+          <div className="container-fluid">
+            <Button variant="btn btn-block btn-success" onClick={() => this.sendDataThree()} color="primary"> ส่งชื่อ </Button>{' '}
+          </div>
+        
         
       { /*  <div className={styles.sigContainer}>
           <SignaturePad 

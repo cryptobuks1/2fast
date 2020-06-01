@@ -26,7 +26,7 @@ export default class MaintenanceTwo extends Component {
     render() {
         return (
         <div>
-            <form action="" method="post">
+            <form>
                 <MDBInput label="ปัญหาที่พบเจอ" name="StepTwoFieldOne" onChange={this.onChange}/>
                 <h6>วิธีแก้ไข</h6>
                 <MDBInput label="วิธีแก้ไข" name="StepTwoFieldTwo" onChange={this.onChange}/>

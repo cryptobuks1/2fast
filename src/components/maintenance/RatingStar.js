@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Rating } from 'semantic-ui-react'
 
+
 export default class RatingStar extends Component {
   constructor(props){
     super(props)
