@@ -81,7 +81,7 @@ export default class MaintenanceThree extends Component {
           <div className="container-fluid">
             <Button variant="btn btn-block btn-success" onClick={() => this.sendDataThree()} color="primary"> ส่งชื่อ </Button>{' '}
           </div>
-        
+        <br />
         
       { /*  <div className={styles.sigContainer}>
           <SignaturePad 

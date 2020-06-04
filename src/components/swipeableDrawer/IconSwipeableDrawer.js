@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Drawer from 'react-motion-drawer';
 import MenuIcon from '@material-ui/icons/Menu'
-
+import logo from '../../image/logo2.png'
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -22,7 +22,7 @@ class IconSwipeableDrawer extends Component {
   rgba(0, 0, 0, 0.227451) 0px 6px 6px"
 }`,
     relativeWidth: false,
-    width: "60%",
+    width: "50%",
     noTouchOpen: false,
     noTouchClose: false,
   };
@@ -56,12 +56,12 @@ class IconSwipeableDrawer extends Component {
     } = this.state;
 
     const drawerProps = {
-      overlayColor: "rgba(255,255,255,0.6)"
+      overlayColor: "rgba(108,117,125,0.6)",
+      maxWidth:'300px'
     };
 
     const styleButton = {
-      backgroundColor:'#E8DA10',
-      width:'100%'
+      backgroundColor:'#E8DA10'
 
   }
 
@@ -98,25 +98,34 @@ class IconSwipeableDrawer extends Component {
                 </div>
                 </div> */
 
-                <div style={{ backgroundColor: `rgba(255,249,167, ${per})`,
+              <div style={{ 
+                backgroundColor: `rgba(255,255,255, ${per})`,
                 width: "100%",
                 height: "100%",
                 position:'relative'
                 }} >
 
+                <List component="nav" aria-label="main mailbox folders" >
+                  <div style={{width:'100%'}}>
+                  <img alt="logo" src={logo} style={{width:'50%', marginLeft:'auto', marginRight:'auto', display: "block", paddingBottom:'10px'}} />
+                  </div>
+              </List>
+
+
+
       <List component="nav" aria-label="main mailbox folders" >
-        <Link className="text-warning" to="/profile" >
+        <Link className="text-muted" to="/profile" >
           <ListItem button>
             <PersonIcon size="30px" />
-              <ListItemText primary="PROFILE" />
+              <ListItemText primary="Profile" />
         </ListItem>
         </Link>
       </List>
 
-      <Divider />
+
 
       <List component="nav" aria-label="main mailbox folders">
-        <Link className="text-warning" to="/" >
+        <Link className="text-muted" to="/" >
           <ListItem button>
             <WorkIcon size="30px" />
               <ListItemText primary="Maintenance Job" />
@@ -124,7 +133,7 @@ class IconSwipeableDrawer extends Component {
         </Link>
       </List>
       
-      <Divider />
+
 
       <List component="nav" aria-label="secondary mailbox folders">
         <Link className="text-muted" to="/maintenance" >
@@ -135,9 +144,9 @@ class IconSwipeableDrawer extends Component {
         </Link>
       </List>
       
-      <Divider />
 
-      <List component="nav" aria-label="secondary mailbox folder" style={{position:'absolute', left:'0', bottom:'0'}}>
+
+      <List className="text-muted"  component="nav" aria-label="secondary mailbox folder" style={{position:'absolute', left:'0', bottom:'0'}}>
         <ListItem button onClick={() => this.props.onLogout()} >
           <RiLogoutCircleLine fontSize="large" size="30px" />
             <ListItemText primary="LOGOUT" />
