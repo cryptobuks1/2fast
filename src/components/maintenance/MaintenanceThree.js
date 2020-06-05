@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
-import SignaturePad from 'react-signature-canvas'
-import styles from './stylesmodule.css'
 import { MDBInput } from "mdbreact"
 import { Button } from 'react-bootstrap'
 import { Rating } from 'semantic-ui-react'
+import SignaturePad from 'react-signature-canvas'
 
 export default class MaintenanceThree extends Component {
     constructor(props){
         super(props)
         this.state={
-            trimmedDataURL: null,
+            signature: null,
             SignatureName: '',
             valueStar : ' ',
             messageRating : 'โปรดประเมินการติดตั้ง',
@@ -55,13 +54,27 @@ export default class MaintenanceThree extends Component {
           }
     }
 
-    sendDataThree(){
-        console.log('SignatureName = '+this.state.SignatureName)
+    clear = () => {
+      this.sigPad.clear()
+      this.setState({
+        signature: null
+      })
+    }
+    trim = () => {
+      this.setState({signature: this.sigPad.getTrimmedCanvas()
+        .toDataURL('image/jpg')})
+    }
+
+    async  sendDataThree(){
+      await  this.trim()
+        console.log('SignatureName = '+ this.state.SignatureName)
         console.log('valueStar = '+ this.state.valueStar)
         console.log('suggestion = '+  this.state.suggestion)
+        console.log('signature = '+ this.state.signature)
+
     }
     render () {
-      const { trimmedDataURL, SignatureName, messageRating} = this.state
+      const { signature, messageRating} = this.state
       
       return(
         <div>
@@ -78,22 +91,32 @@ export default class MaintenanceThree extends Component {
         <form>
         <MDBInput label="ข้อเสนอแนะ" name="suggestion" onChange={this.onChange}/>
         </form>
+
+        <form>
+          <div style={{ width:'100%' , maxWidth:'100%' }}>
+            <SignaturePad 
+
+              backgroundColor = '#ffffcc'
+              ref={(ref) => { this.sigPad = ref }} 
+            />
+          </div>
+
+          <div>
+            <Button variant="btn btn-success" onClick={() => this.clear()} color="primary"> แก้ไขลายเซ็น </Button>{' '}
+          </div>
+        </form>
+
           <div className="container-fluid">
             <Button variant="btn btn-block btn-success" onClick={() => this.sendDataThree()} color="primary"> ส่งชื่อ </Button>{' '}
           </div>
         <br />
-        
-      { /*  <div className={styles.sigContainer}>
-          <SignaturePad 
-          canvasProps={{className: styles.sigPad}}
-            ref={(ref) => { this.sigPad = ref }} 
-            styles={{height: '200px', color : '#EEEE'}}
-            />
-        </div>
-        <div>
-          
-        </div>
-      {trimmedDataURL ? <img src="sig" className={styles.sigImage} src={trimmedDataURL} /> : null}  */}
+
+        {signature
+          ? <img
+            alt="signature"
+            src={signature} />
+          : null }
+
       </div>
       )
     }
