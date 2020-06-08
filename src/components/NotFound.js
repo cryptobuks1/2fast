@@ -6,7 +6,7 @@ export default class NotFound extends Component {
         return (
             <div>
             <Header />
-                404 จ้าาาาาาาาาาาาาาาาาา
+                404 จ้าาาาาาาาาาาาาาาาาาdsdasd
             </div>
         )
     }
