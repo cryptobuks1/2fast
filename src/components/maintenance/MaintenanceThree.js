@@ -3,6 +3,7 @@ import { MDBInput } from "mdbreact"
 import { Button } from 'react-bootstrap'
 import { Rating } from 'semantic-ui-react'
 import SignaturePad from 'react-signature-canvas'
+import './styles.module.sig.css'
 
 export default class MaintenanceThree extends Component {
     constructor(props){
@@ -93,30 +94,33 @@ export default class MaintenanceThree extends Component {
         </form>
 
         <form>
-          <div style={{ width:'100%' , maxWidth:'100%' }}>
+        <div className="container">
+          <div className="sigContainer">
             <SignaturePad 
-
+              canvasProps={{className: "sigPad"}}
               backgroundColor = '#ffffcc'
               ref={(ref) => { this.sigPad = ref }} 
             />
           </div>
-
-          <div>
-            <Button variant="btn btn-success" onClick={() => this.clear()} color="primary"> แก้ไขลายเซ็น </Button>{' '}
+        </div>
+        <br />
+          <div className="container-fluid">
+            <Button variant="btn btn-block btn-warning" onClick={() => this.clear()} color="primary"> แก้ไขลายเซ็น </Button>{' '}
           </div>
         </form>
-
+        <br />
           <div className="container-fluid">
             <Button variant="btn btn-block btn-success" onClick={() => this.sendDataThree()} color="primary"> ส่งชื่อ </Button>{' '}
           </div>
         <br />
-
+        <div className="container-fluid">
         {signature
           ? <img
-            alt="signature"
-            src={signature} />
+              className="sigImage"
+              alt="signature"
+              src={signature} />
           : null }
-
+        </div>
       </div>
       )
     }

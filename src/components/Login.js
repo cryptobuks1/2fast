@@ -34,7 +34,9 @@ export default class Login extends Component {
             password : this.state.password
         }).then( res => {
                     localStorage.setItem( 'user' , res.data.accessToken)
-                    this.props.history.push('/')
+                    this.props.history.push({
+                        pathname:'/'
+                    })
                     this.stoptSpinnerLoad()
         }).catch( error => {
             this.stoptSpinnerLoad()

@@ -99,71 +99,73 @@ class IconSwipeableDrawer extends Component {
                 </div> */
 
               <div style={{ 
-                backgroundColor: `rgba(255,255,255, ${per})`,
-                width: "100%",
-                height: "100%",
-                position:'relative'
-                }} >
+                      backgroundColor: `rgba(255,255,255, ${per})`,
+                      width: "100%",
+                      height: "100%",
+                      position:'relative'
+                    }} >
 
-                <List component="nav" aria-label="main mailbox folders" >
-                  <div style={{width:'100%'}}>
-                  <img alt="logo" src={logo} style={{width:'50%', marginLeft:'auto', marginRight:'auto', display: "block", paddingBottom:'10px'}} />
-                  </div>
-              </List>
+                    <List component="nav" aria-label="main mailbox folders" >
+                      <div style={{width:'100%'}}>
+                        <img alt="logo" src={logo} style={{width:'50%', marginLeft:'auto', marginRight:'auto', display: "block", paddingBottom:'10px'}} />
+                      </div>
 
-
-
-      <List component="nav" aria-label="main mailbox folders" >
-        <Link className="text-muted" to="/profile" >
-          <ListItem button>
-            <PersonIcon size="30px" />
-              <ListItemText primary="Profile" />
+                      <ListItem button>
+            <Link className="text-muted" to="/profile" >
+              <ListItemText>
+                <p style={{fontSize:'4vw'}}> <PersonIcon style={{ fontSize: '4vw' }} /> Profile</p>
+              </ListItemText>
+            </Link>
         </ListItem>
-        </Link>
-      </List>
 
 
 
-      <List component="nav" aria-label="main mailbox folders">
-        <Link className="text-muted" to="/" >
+
+        
           <ListItem button>
-            <WorkIcon size="30px" />
-              <ListItemText primary="Maintenance Job" />
+          <Link className="text-muted" to="/" >
+            <ListItemText>
+              <p style={{fontSize:'4vw'}}> <WorkIcon style={{ fontSize: '4vw' }} /> Maintenance Job</p>
+            </ListItemText>
+            </Link>
         </ListItem>
-        </Link>
-      </List>
+
       
 
 
-      <List component="nav" aria-label="secondary mailbox folders">
-        <Link className="text-muted" to="/maintenance" >
+
+        
           <ListItem button>
-            <ListIcon size="30px" />
-              <ListItemText primary="Maintenance List" />
+          <Link className="text-muted" to="/maintenance" >
+            <ListItemText>
+              <p style={{fontSize:'4vw'}}> <ListIcon style={{ fontSize: '4vw' }} /> Maintenance List</p>
+            </ListItemText>
+            </Link>
         </ListItem>
-        </Link>
-      </List>
+
+                    </List>
+
+
+
+        
+          
+
+
       
 
 
       <List className="text-muted"  component="nav" aria-label="secondary mailbox folder" style={{position:'absolute', left:'0', bottom:'0'}}>
         <ListItem button onClick={() => this.props.onLogout()} >
-          <RiLogoutCircleLine fontSize="large" size="30px" />
-            <ListItemText primary="LOGOUT" />
+            <ListItemText>
+              <p style={{fontSize:'4vw'}}> <RiLogoutCircleLine style={{ fontSize: '4vw' }} /> Logout</p>
+            </ListItemText>
         </ListItem>
       </List>
 
-    </div>
-
-            
+    </div>  
               );
             }}
           </Drawer>}
-
-
-            
-         
-       
 
       </div>
     );
