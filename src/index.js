@@ -7,8 +7,8 @@ import * as serviceWorker from "./serviceWorker";
 
 //import '@fortawesome/fontawesome-free/css/all.min.css';
 //import 'bootstrap/dist/css/bootstrap.css';
-import 'mdbreact/dist/css/mdb.css';
-import 'semantic-ui-css/semantic.min.css'
+//import 'mdbreact/dist/css/mdb.css';
+//import 'semantic-ui-css/semantic.min.css'
 
 
 ReactDOM.render(
