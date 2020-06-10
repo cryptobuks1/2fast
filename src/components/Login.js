@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+//import TextField from '@material-ui/core/TextField'
+//import Button from '@material-ui/core/Button'
 import logo from '../image/newFast.png'
 import NokSoft from '../image/newLogo.jpg'
-import Spinner from 'react-bootstrap/Spinner'
+//import Spinner from 'react-bootstrap/Spinner'
+
+import Loadable from 'react-loadable'
 
 export default class Login extends Component {
     constructor(props){
@@ -84,7 +86,21 @@ export default class Login extends Component {
             display:'block',
             marginLeft:'auto', 
             marginRight:'auto'
-    }
+        }
+   
+        const TextField = Loadable({
+          loader: () => import('@material-ui/core/TextField'),
+          loading: () => null
+        });
+        const Button = Loadable({
+          loader: () => import('@material-ui/core/Button'),
+          loading: () => null
+        });
+        const Spinner = Loadable({
+          loader: () => import('react-bootstrap/Spinner'),
+          loading: () => null
+        });
+        
         return (
             <div className="container-fluid">
               <div>

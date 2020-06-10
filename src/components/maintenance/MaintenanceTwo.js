@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap';
-import { MDBInput } from "mdbreact"
+//import { MDBInput } from "mdbreact"
 
+import Loadable from 'react-loadable'
 export default class MaintenanceTwo extends Component {
     constructor(props){
         super(props)
@@ -24,6 +25,10 @@ export default class MaintenanceTwo extends Component {
       }
 
     render() {
+        const { MDBInput } = Loadable({
+            loader: () => import("mdbreact"),
+            loading: () => null
+          });
         return (
         <div>
             <form>

@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import { MDBInput } from "mdbreact"
-import { Button } from 'react-bootstrap'
-import { Rating } from 'semantic-ui-react'
-import SignaturePad from 'react-signature-canvas'
+//import { MDBInput } from "mdbreact"
+//import { Button } from 'react-bootstrap'
+//import { Rating } from 'semantic-ui-react'
+//import SignaturePad from 'react-signature-canvas'
 import './styles.module.sig.css'
+
+import Loadable from 'react-loadable'
+
 
 export default class MaintenanceThree extends Component {
     constructor(props){
@@ -76,7 +79,23 @@ export default class MaintenanceThree extends Component {
     }
     render () {
       const { signature, messageRating} = this.state
-      
+      const SignaturePad = Loadable({
+        loader: () => import('react-signature-canvas'),
+        loading: () => null
+      });
+      const {Rating} = Loadable({
+        loader: () => import('semantic-ui-react'),
+        loading: () => null
+      });
+      const { Button } = Loadable({
+        loader: () => import('react-bootstrap'),
+        loading: () => null
+      });
+      const { MDBInput } = Loadable({
+        loader: () => import("mdbreact"),
+        loading: () => null
+      });
+
       return(
         <div>
         <form>

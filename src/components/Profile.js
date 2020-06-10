@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { getjwt } from '../components/helpers/jwt'
 import unimageuser from '../image/unimageuser.jpg'
-import Header from './Header'
-
+//import Header from './Header'
+import Loadable from 'react-loadable'
 export default class Profile extends Component {
     constructor(props){
         super(props)
@@ -57,7 +57,11 @@ export default class Profile extends Component {
             marginRight:'auto',
             marginLeft:'auto'
         }
-        
+
+        const Header = Loadable({
+            loader: () => import('./Header'),
+            loading: () => null
+          });
         return (
         <div className="container-fluid">
             <div className="row">

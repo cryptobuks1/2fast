@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { getjwt } from '../components/helpers/jwt'
-import Header from './Header'
-import Alert from 'react-bootstrap/Alert'
+//import Header from './Header'
+//import Alert from 'react-bootstrap/Alert'
 import { Link } from "react-router-dom"
+import Loadable from 'react-loadable'
 
+  
 class Home extends Component {
     constructor(props){
         super(props)
@@ -49,6 +51,16 @@ class Home extends Component {
             width:'100%'
             
         }
+
+        const Header = Loadable({
+            loader: () => import('./Header'),
+            loading: () => null
+          });
+          const Alert = Loadable({
+            loader: () => import('react-bootstrap/Alert'),
+            loading: () => null
+          });
+        
         return (
             <div className="container-fluid">
             <Header />

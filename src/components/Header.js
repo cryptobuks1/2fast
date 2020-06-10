@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { getjwt } from '../components/helpers/jwt'
-import Button from '@material-ui/core/Button'
-import { Link } from "react-router-dom"
 import { withRouter } from "react-router-dom"
 import './header.css'
-import IconSwipeableDrawer from './swipeableDrawer/IconSwipeableDrawer'
-import Profile from './Profile'
-
+//import IconSwipeableDrawer from './swipeableDrawer/IconSwipeableDrawer'
+import Loadable from 'react-loadable'
 class Header extends Component {
     constructor(props){
         super(props)
@@ -39,6 +36,12 @@ class Header extends Component {
     }
 
     render() {
+
+        const IconSwipeableDrawer = Loadable({
+            loader: () => import('./swipeableDrawer/IconSwipeableDrawer'),
+            loading: () => null
+          });
+
         return (
         <div className="container-fluid" style={{marginTop:'20px'}}>
             <div>

@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { Button } from 'react-bootstrap';
 
 import ImageUploader from "react-images-upload"
-import { MDBInput } from "mdbreact"
+//import { MDBInput } from "mdbreact"
+
+import Loadable from 'react-loadable'
 
 export default class UploadImage extends Component {
     constructor(props) {
@@ -79,6 +81,11 @@ export default class UploadImage extends Component {
 
       render() {
         const { pictures, img } = this.state
+
+        const { MDBInput } = Loadable({
+          loader: () => import("mdbreact"),
+          loading: () => null
+        });
         return (
           <div>
           

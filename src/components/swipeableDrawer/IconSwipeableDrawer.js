@@ -1,16 +1,35 @@
 import React, { Component } from 'react'
-import Drawer from 'react-motion-drawer';
-import MenuIcon from '@material-ui/icons/Menu'
-import logo from '../../image/logo2.png'
+//import Drawer from 'react-motion-drawer';
+//import MenuIcon from '@material-ui/icons/Menu'
+//import logo from '../../image/logo2.png'
 import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import { RiLogoutCircleLine } from 'react-icons/ri';
-import PersonIcon from '@material-ui/icons/Person';
+//import List from '@material-ui/core/List';
+//import ListItem from '@material-ui/core/ListItem';
+//import ListItemText from '@material-ui/core/ListItemText';
+//import { RiLogoutCircleLine } from 'react-icons/ri';
+//import PersonIcon from '@material-ui/icons/Person';
 import { Link } from "react-router-dom"
-import ListIcon from '@material-ui/icons/List';
-import WorkIcon from '@material-ui/icons/Work';
+//import ListIcon from '@material-ui/icons/List';
+//import WorkIcon from '@material-ui/icons/Work';
+import Loadable from 'react-loadable'
+
+const logo = Loadable({
+  loader: () => import('../../image/logo2.png'),
+  loading: () => null
+});
+const MenuIcon = Loadable({
+  loader: () => import('@material-ui/icons/Menu'),
+  loading: () => null
+});
+const List = Loadable({
+  loader: () => import('@material-ui/core/List'),
+  loading: () => null
+});
+const ListItem = Loadable({
+  loader: () => import('@material-ui/core/ListItem'),
+  loading: () => null
+});
+
 
 class IconSwipeableDrawer extends Component {
   state = {
@@ -62,9 +81,32 @@ class IconSwipeableDrawer extends Component {
 
     const styleButton = {
       backgroundColor:'#E8DA10'
-
   }
 
+  const ListItemText = Loadable({
+    loader: () => import('@material-ui/core/ListItemText'),
+    loading: () => null
+  });
+  const PersonIcon = Loadable({
+    loader: () => import('@material-ui/icons/Person'),
+    loading: () => null
+  });
+  const ListIcon = Loadable({
+    loader: () => import('@material-ui/icons/List'),
+    loading: () => null
+  });
+  const WorkIcon = Loadable({
+    loader: () => import('@material-ui/icons/Work'),
+    loading: () => null
+  });
+  const Drawer = Loadable({
+    loader: () => import('react-motion-drawer'),
+    loading: () => null
+  });
+  const { RiLogoutCircleLine } = Loadable({
+    loader: () => import('react-icons/ri'),
+    loading: () => null
+  });
     return (
       <div>
         <div>
