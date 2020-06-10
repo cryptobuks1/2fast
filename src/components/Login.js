@@ -8,6 +8,10 @@ import NokSoft from '../image/newLogo.jpg'
 
 import Loadable from 'react-loadable'
 
+const TextField = Loadable({
+    loader: () => import('@material-ui/core/TextField'),
+    loading: () => null
+  });
 export default class Login extends Component {
     constructor(props){
         super(props)
@@ -88,10 +92,7 @@ export default class Login extends Component {
             marginRight:'auto'
         }
    
-        const TextField = Loadable({
-          loader: () => import('@material-ui/core/TextField'),
-          loading: () => null
-        });
+        
         const Button = Loadable({
           loader: () => import('@material-ui/core/Button'),
           loading: () => null
