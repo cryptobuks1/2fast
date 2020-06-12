@@ -3,7 +3,7 @@ import axios from 'axios'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import logo from '../image/newFast.svg'
-import NokSoft from '../image/newLogo.jpg'
+import NokSoft from '../image/newLogo.svg'
 import Spinner from 'react-bootstrap/Spinner'
 
 import Loadable from 'react-loadable'
