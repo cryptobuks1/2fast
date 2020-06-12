@@ -89,7 +89,7 @@ export default class Login extends Component {
                                     marginRight:'auto', 
                                     display:'block', 
                                     marginBottom:'50px' , 
-                                    width:'60%',
+                                    maxWidth:'50%',
                                     marginTop:'20%'
                                 }}/>
               </div>
