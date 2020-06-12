@@ -18,7 +18,7 @@ export default class Profile extends Component {
         if(!jwt) {
             this.props.history.push('/login')
         }
-        axios.get('http://52.221.218.246:5001/api' , 
+        axios.get('52.221.218.246:5001/api' , 
         { 
             headers : { 'x-access-token' : jwt  } 
         })

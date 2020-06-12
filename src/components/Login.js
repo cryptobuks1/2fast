@@ -31,7 +31,7 @@ export default class Login extends Component {
     submit(e){
         e.preventDefault()
         this.startSpinnerLoad()
-        axios.post('http://52.221.218.246:5000/login' , {
+        axios.post('52.221.218.246:5000/login' , {
             username : this.state.username,
             password : this.state.password
         })
