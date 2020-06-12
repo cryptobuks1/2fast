@@ -3,6 +3,7 @@ import axios from 'axios'
 import { getjwt } from '../components/helpers/jwt'
 import unimageuser from '../image/unimageuser.jpg'
 import Header from './Header'
+import LazyLoad from 'react-lazyload'
 import Loadable from 'react-loadable'
 export default class Profile extends Component {
     constructor(props){
@@ -18,7 +19,7 @@ export default class Profile extends Component {
         if(!jwt) {
             this.props.history.push('/login')
         }
-        axios.get('http://52.221.218.246:5001/api' , 
+        axios.get('http://52.221.218.246:5001/api/v1/GetUserData' , 
         { 
             headers : { 'x-access-token' : jwt  } 
         })
@@ -48,6 +49,7 @@ export default class Profile extends Component {
 
         return (
         <div className="container-fluid">
+        <LazyLoad>
             <div className="row">
                 <div className="col-2 col-md-2">
                     <Header />
@@ -67,7 +69,7 @@ export default class Profile extends Component {
                     <p class="font-weight-bold">{ rolesName }</p>
                 </div>
             </div>
-            
+            </LazyLoad>
         </div>
         )
     }

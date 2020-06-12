@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 import logo from '../image/newFast.svg'
 import NokSoft from '../image/newLogo.svg'
 import Spinner from 'react-bootstrap/Spinner'
-
+import LazyLoad from 'react-lazyload'
 import Loadable from 'react-loadable'
 
 export default class Login extends Component {
@@ -84,7 +84,8 @@ export default class Login extends Component {
         return (
             <div className="container-fluid">
               <div>
-                <img alt="logo" src={logo} style={{
+                <LazyLoad>
+                    <img alt="logo" src={logo} style={{
                                     marginLeft:'auto', 
                                     marginRight:'auto', 
                                     display:'block', 
@@ -92,6 +93,7 @@ export default class Login extends Component {
                                     maxWidth:'60%',
                                     marginTop:'20%'
                                 }}/>
+                </LazyLoad>
               </div>
                 <form  onSubmit={ e => this.submit(e) }>
                 
@@ -151,7 +153,9 @@ export default class Login extends Component {
 
                 </form>
                 <div style={{marginTop:"25%"}}>
+                <LazyLoad>
                 <img alt="logo" src={NokSoft} style={{width:"30%", marginLeft:'auto', marginRight:'auto', display: "block"}} />
+                </LazyLoad>
                 </div>
             </div>
         

@@ -12,6 +12,7 @@ import { Link } from "react-router-dom"
 import ListIcon from '@material-ui/icons/List';
 import WorkIcon from '@material-ui/icons/Work';
 import Loadable from 'react-loadable'
+import LazyLoad from 'react-lazyload'
 
 class IconSwipeableDrawer extends Component {
   state = {
@@ -107,7 +108,9 @@ class IconSwipeableDrawer extends Component {
 
                     <List component="nav" aria-label="main mailbox folders" >
                       <div style={{width:'100%'}}>
-                        <img alt="logo" src={logo} style={{width:'50%', marginLeft:'auto', marginRight:'auto', display: "block", paddingBottom:'10px'}} />
+                      
+                          <img alt="logo" src={logo} style={{width:'50%', marginLeft:'auto', marginRight:'auto', display: "block", paddingBottom:'10px'}} />
+                  
                       </div>
 
 

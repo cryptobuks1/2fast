@@ -9,7 +9,7 @@ import MaintenanceThree from './MaintenanceThree'
 import { Button } from 'react-bootstrap';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-
+import LazyLoad from 'react-lazyload'
 export default class MaintenanceOne extends Component {
     constructor(props){
         super(props)
@@ -60,6 +60,7 @@ export default class MaintenanceOne extends Component {
     }
         return (
             <div className="container-fluid">
+            <LazyLoad>
             <div>
             <Header />
             </div>
@@ -160,7 +161,7 @@ export default class MaintenanceOne extends Component {
       </MDBRow>
     </MDBContainer>
                 </div>
-
+                </LazyLoad>
             </div>
         )
     }
