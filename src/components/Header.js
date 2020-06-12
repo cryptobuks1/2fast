@@ -3,7 +3,7 @@ import axios from 'axios'
 import { getjwt } from '../components/helpers/jwt'
 import { withRouter } from "react-router-dom"
 import './header.css'
-//import IconSwipeableDrawer from './swipeableDrawer/IconSwipeableDrawer'
+import IconSwipeableDrawer from './swipeableDrawer/IconSwipeableDrawer'
 import Loadable from 'react-loadable'
 class Header extends Component {
     constructor(props){
@@ -13,34 +13,12 @@ class Header extends Component {
         
     }
 
-    componentDidMount(){
-        const jwt = getjwt()
-        if(!jwt) {
-            this.props.history.push('/login')
-        }
-        axios.get('http://54.254.141.16:3000/api/client' , 
-        { 
-            headers : { 'x-access-token' : jwt  } 
-        })
-        .then( res => {
-            
-        }).catch( err => {
-            localStorage.removeItem('user')
-            this.props.history.push('/login')
-        })
-    }
-
     logout(){
         localStorage.removeItem('user')
         this.props.history.push('/login')
     }
 
     render() {
-
-        const IconSwipeableDrawer = Loadable({
-            loader: () => import('./swipeableDrawer/IconSwipeableDrawer'),
-            loading: () => null
-          });
 
         return (
         <div className="container-fluid" style={{marginTop:'20px'}}>

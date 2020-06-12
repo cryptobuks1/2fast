@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Header from '../Header'
+import axios from 'axios'
+import { getjwt } from '../helpers/jwt'
 import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBCardBody, MDBInput } from "mdbreact"
 import UploadImage from './UploadImage'
 import MaintenanceTwo from './MaintenanceTwo'

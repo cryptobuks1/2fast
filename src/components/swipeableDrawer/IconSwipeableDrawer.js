@@ -1,35 +1,17 @@
 import React, { Component } from 'react'
-//import Drawer from 'react-motion-drawer';
-//import MenuIcon from '@material-ui/icons/Menu'
-//import logo from '../../image/logo2.png'
+import Drawer from 'react-motion-drawer';
+import MenuIcon from '@material-ui/icons/Menu'
+import logo from '../../image/logo2.png'
 import Divider from '@material-ui/core/Divider';
-//import List from '@material-ui/core/List';
-//import ListItem from '@material-ui/core/ListItem';
-//import ListItemText from '@material-ui/core/ListItemText';
-//import { RiLogoutCircleLine } from 'react-icons/ri';
-//import PersonIcon from '@material-ui/icons/Person';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { RiLogoutCircleLine } from 'react-icons/ri';
+import PersonIcon from '@material-ui/icons/Person';
 import { Link } from "react-router-dom"
-//import ListIcon from '@material-ui/icons/List';
-//import WorkIcon from '@material-ui/icons/Work';
+import ListIcon from '@material-ui/icons/List';
+import WorkIcon from '@material-ui/icons/Work';
 import Loadable from 'react-loadable'
-
-const logo = Loadable({
-  loader: () => import('../../image/logo2.png'),
-  loading: () => null
-});
-const MenuIcon = Loadable({
-  loader: () => import('@material-ui/icons/Menu'),
-  loading: () => null
-});
-const List = Loadable({
-  loader: () => import('@material-ui/core/List'),
-  loading: () => null
-});
-const ListItem = Loadable({
-  loader: () => import('@material-ui/core/ListItem'),
-  loading: () => null
-});
-
 
 class IconSwipeableDrawer extends Component {
   state = {
@@ -83,30 +65,6 @@ class IconSwipeableDrawer extends Component {
       backgroundColor:'#E8DA10'
   }
 
-  const ListItemText = Loadable({
-    loader: () => import('@material-ui/core/ListItemText'),
-    loading: () => null
-  });
-  const PersonIcon = Loadable({
-    loader: () => import('@material-ui/icons/Person'),
-    loading: () => null
-  });
-  const ListIcon = Loadable({
-    loader: () => import('@material-ui/icons/List'),
-    loading: () => null
-  });
-  const WorkIcon = Loadable({
-    loader: () => import('@material-ui/icons/Work'),
-    loading: () => null
-  });
-  const Drawer = Loadable({
-    loader: () => import('react-motion-drawer'),
-    loading: () => null
-  });
-  const { RiLogoutCircleLine } = Loadable({
-    loader: () => import('react-icons/ri'),
-    loading: () => null
-  });
     return (
       <div>
         <div>
@@ -152,57 +110,41 @@ class IconSwipeableDrawer extends Component {
                         <img alt="logo" src={logo} style={{width:'50%', marginLeft:'auto', marginRight:'auto', display: "block", paddingBottom:'10px'}} />
                       </div>
 
-                      <ListItem button>
-            <Link className="text-muted" to="/profile" >
-              <ListItemText>
-                <p style={{fontSize:'4vw'}}> <PersonIcon style={{ fontSize: '4vw' }} /> Profile</p>
-              </ListItemText>
-            </Link>
-        </ListItem>
 
+                      <Link className="text-muted" to="/profile" >
+                        <ListItem button>
+                          <ListItemText>
+                            <p style={{fontSize:'4vw'}}> <PersonIcon style={{ fontSize: '4vw' }} /> Profile</p>
+                          </ListItemText>
+                        </ListItem>
+                      </Link>
 
-
-
-        
-          <ListItem button>
-          <Link className="text-muted" to="/" >
-            <ListItemText>
-              <p style={{fontSize:'4vw'}}> <WorkIcon style={{ fontSize: '4vw' }} /> Maintenance Job</p>
-            </ListItemText>
-            </Link>
-        </ListItem>
-
+                      <Link className="text-muted" to="/" >
+                        <ListItem button>
+                          <ListItemText>
+                            <p style={{fontSize:'4vw'}}> <WorkIcon style={{ fontSize: '4vw' }} /> Maintenance Job</p>
+                          </ListItemText>
+                        </ListItem>
+                      </Link>
       
-
-
-
-        
-          <ListItem button>
-          <Link className="text-muted" to="/maintenance" >
-            <ListItemText>
-              <p style={{fontSize:'4vw'}}> <ListIcon style={{ fontSize: '4vw' }} /> Maintenance List</p>
-            </ListItemText>
-            </Link>
-        </ListItem>
-
+                      <Link className="text-muted" to="/maintenance" >
+                        <ListItem button>
+                          <ListItemText>
+                            <p style={{fontSize:'4vw'}}> <ListIcon style={{ fontSize: '4vw' }} /> Maintenance List</p>
+                          </ListItemText>
+                        </ListItem>
+                      </Link>
                     </List>
 
 
 
-        
-          
-
-
-      
-
-
-      <List className="text-muted"  component="nav" aria-label="secondary mailbox folder" style={{position:'absolute', left:'0', bottom:'0'}}>
-        <ListItem button onClick={() => this.props.onLogout()} >
-            <ListItemText>
-              <p style={{fontSize:'4vw'}}> <RiLogoutCircleLine style={{ fontSize: '4vw' }} /> Logout</p>
-            </ListItemText>
-        </ListItem>
-      </List>
+                  <List className="text-muted"  style={{position:'absolute', left:'0', bottom:'0', width:'100%'}} component="nav" aria-label="main mailbox folders">
+                    <ListItem button onClick={() => this.props.onLogout()} >
+                      <ListItemText>
+                        <p style={{fontSize:'4vw'}}> <RiLogoutCircleLine style={{ fontSize: '4vw' }} /> Logout</p>
+                      </ListItemText>
+                    </ListItem>
+                  </List>
 
     </div>  
               );

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap';
-
+import axios from 'axios'
+import { getjwt } from '../helpers/jwt'
 import ImageUploader from "react-images-upload"
-//import { MDBInput } from "mdbreact"
+import { MDBInput } from "mdbreact"
 
 import Loadable from 'react-loadable'
 
@@ -16,7 +17,7 @@ export default class UploadImage extends Component {
             };
         this.onDrop = this.onDrop.bind(this);
       }
-    
+
       onDrop(pictureFiles, pictureDataURLs) {
         this.setState({
           pictures : pictureFiles,
@@ -82,10 +83,6 @@ export default class UploadImage extends Component {
       render() {
         const { pictures, img } = this.state
 
-        const { MDBInput } = Loadable({
-          loader: () => import("mdbreact"),
-          loading: () => null
-        });
         return (
           <div>
           

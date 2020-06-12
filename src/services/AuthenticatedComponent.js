@@ -27,11 +27,13 @@ class AuthenticatedComponent extends Component {
         if(!jwt) {
             this.props.history.push('/login')
         }
-        axios.get('http://54.254.141.16:3000/api/client' , 
+        axios.get('http://52.221.218.246:5001/api' , 
         { headers : { 'x-access-token' : jwt } } )
-        .then( res => this.setState({
-            user : res.data
-        })).catch( err => {
+        .then( res => {
+            this.setState({
+                user : res.data
+            })
+        }).catch( err => {
             localStorage.removeItem('user')
             this.props.history.push('/login')
         })

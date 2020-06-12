@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap';
-//import { MDBInput } from "mdbreact"
+import { MDBInput } from "mdbreact"
 
 import Loadable from 'react-loadable'
 export default class MaintenanceTwo extends Component {
@@ -20,15 +20,11 @@ export default class MaintenanceTwo extends Component {
       }
 
       sendData(){
-          console.log("2-1 = " + this.state.StepTwoFieldOne)
-          console.log("2-2 = " + this.state.StepTwoFieldTwo)
+          console.log("ปัญหาที่พบเจอ = " + this.state.StepTwoFieldOne)
+          console.log("วิธีแก้ไข = " + this.state.StepTwoFieldTwo)
       }
 
     render() {
-        const { MDBInput } = Loadable({
-            loader: () => import("mdbreact"),
-            loading: () => null
-          });
         return (
         <div>
             <form>

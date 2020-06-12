@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-//import TextField from '@material-ui/core/TextField'
-//import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 import logo from '../image/newFast.png'
 import NokSoft from '../image/newLogo.jpg'
-//import Spinner from 'react-bootstrap/Spinner'
+import Spinner from 'react-bootstrap/Spinner'
 
 import Loadable from 'react-loadable'
 
-const TextField = Loadable({
-    loader: () => import('@material-ui/core/TextField'),
-    loading: () => null
-  });
 export default class Login extends Component {
     constructor(props){
         super(props)
@@ -35,26 +31,18 @@ export default class Login extends Component {
     submit(e){
         e.preventDefault()
         this.startSpinnerLoad()
-        axios.post('http://54.254.141.16:3001/api/auth/signin' , {
+        axios.post('http://52.221.218.246:5000/login' , {
             username : this.state.username,
             password : this.state.password
         }).then( res => {
-                    localStorage.setItem( 'user' , res.data.accessToken)
-                    this.props.history.push({
-                        pathname:'/'
-                    })
+                    localStorage.setItem( 'user' , res.data.token)
+                    this.props.history.push('/')
                     this.stoptSpinnerLoad()
         }).catch( error => {
             this.stoptSpinnerLoad()
-            if(error.response.status === 404){
-                this.setState({
-                    message : error.response.data
-                })
-            } else if (error.response.status === 401){
-                this.setState({
-                    message : error.response.data.reason
-                })
-            }
+            this.setState({
+                message : error.response.data.Error
+            })
             this.showMessage()
         }  )
     }
@@ -91,16 +79,6 @@ export default class Login extends Component {
             marginLeft:'auto', 
             marginRight:'auto'
         }
-   
-        
-        const Button = Loadable({
-          loader: () => import('@material-ui/core/Button'),
-          loading: () => null
-        });
-        const Spinner = Loadable({
-          loader: () => import('react-bootstrap/Spinner'),
-          loading: () => null
-        });
         
         return (
             <div className="container-fluid">

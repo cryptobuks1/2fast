@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { getjwt } from '../components/helpers/jwt'
-//import Header from './Header'
-//import Alert from 'react-bootstrap/Alert'
+import Header from './Header'
+import Alert from 'react-bootstrap/Alert'
 import { Link } from "react-router-dom"
 import Loadable from 'react-loadable'
 
@@ -21,7 +21,7 @@ class Home extends Component {
         if(!jwt) {
             this.props.history.push('/login')
         }
-        axios.get('http://54.254.141.16:3000/api/client' , 
+        axios.get('http://52.221.218.246:5001/api' , 
         { 
             headers : { 'x-access-token' : jwt  } 
         })
@@ -52,14 +52,6 @@ class Home extends Component {
             
         }
 
-        const Header = Loadable({
-            loader: () => import('./Header'),
-            loading: () => null
-          });
-          const Alert = Loadable({
-            loader: () => import('react-bootstrap/Alert'),
-            loading: () => null
-          });
         
         return (
             <div className="container-fluid">
