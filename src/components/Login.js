@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import logo from '../image/newFast.png'
+import logo from '../image/newFast.svg'
 import NokSoft from '../image/newLogo.jpg'
 import Spinner from 'react-bootstrap/Spinner'
 
@@ -34,7 +34,8 @@ export default class Login extends Component {
         axios.post('http://52.221.218.246:5000/login' , {
             username : this.state.username,
             password : this.state.password
-        }).then( res => {
+        })
+        .then( res => {
                     localStorage.setItem( 'user' , res.data.token)
                     this.props.history.push('/')
                     this.stoptSpinnerLoad()
