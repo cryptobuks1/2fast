@@ -6,7 +6,8 @@ import Alert from 'react-bootstrap/Alert'
 import { Link } from "react-router-dom"
 import Loadable from 'react-loadable'
 import LazyLoad from 'react-lazyload'
-  
+
+var IPModule = require('./helpers/Ip')
 class Home extends Component {
     constructor(props){
         super(props)
@@ -21,7 +22,7 @@ class Home extends Component {
         if(!jwt) {
             this.props.history.push('/login')
         }
-        axios.get('http://52.221.218.246:5001/api/v1/GetUserData' , 
+        axios.get(`http://${IPModule.getIP()}:5001/api/v1/GetUserData` , 
         { 
             headers : { 'x-access-token' : jwt  } 
         })

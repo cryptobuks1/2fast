@@ -7,7 +7,7 @@ import { BrowserRouter , Switch, Route } from "react-router-dom"
 import Loadable from 'react-loadable'
 //import Maintenance from './components/maintenance/MaintenanceOne'
 import LazyLoad from 'react-lazyload'
-export default class App extends Component {
+class App extends Component {
   render() {
 
     const Login = Loadable({
@@ -49,3 +49,5 @@ export default class App extends Component {
     )
   }
 }
+
+export default  App

@@ -14,6 +14,7 @@ bottom:0;
 margin:auto;
 `;
 
+var IPModule = require('../components/helpers/Ip')
 class AuthenticatedComponent extends Component {
     constructor(props){
         super(props)
@@ -27,7 +28,7 @@ class AuthenticatedComponent extends Component {
         if(!jwt) {
             this.props.history.push('/login')
         }
-        axios.get('http://52.221.218.246:5001/api/v1/GetUserData' , 
+        axios.get(`http://${IPModule.getIP()}:5001/api/v1/GetUserData` , 
         { headers : { 'x-access-token' : jwt } } )
         .then( res => {
             this.setState({

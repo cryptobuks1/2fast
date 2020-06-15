@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { MDBInput } from "mdbreact"
-import { Button } from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
 import { Rating } from 'semantic-ui-react'
 import SignaturePad from 'react-signature-canvas'
 import './styles.module.sig.css'

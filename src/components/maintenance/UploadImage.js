@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 import { getjwt } from '../helpers/jwt'
 import ImageUploader from "react-images-upload"

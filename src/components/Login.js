@@ -8,6 +8,7 @@ import Spinner from 'react-bootstrap/Spinner'
 import LazyLoad from 'react-lazyload'
 import Loadable from 'react-loadable'
 
+var IPModule = require('./helpers/Ip')
 export default class Login extends Component {
     constructor(props){
         super(props)
@@ -31,7 +32,7 @@ export default class Login extends Component {
     submit(e){
         e.preventDefault()
         this.startSpinnerLoad()
-        axios.post('http://52.221.218.246:5000/login' , {
+        axios.post(`http://${IPModule.getIP()}:5000/login` , {
             username : this.state.username,
             password : this.state.password
         })
@@ -150,7 +151,6 @@ export default class Login extends Component {
                    }
                     <span>Sign In</span>
                   </Button>
-
                 </form>
                 <div style={{marginTop:"25%"}}>
                 <LazyLoad>

@@ -6,7 +6,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBCardBody,
 import UploadImage from './UploadImage'
 import MaintenanceTwo from './MaintenanceTwo'
 import MaintenanceThree from './MaintenanceThree'
-import { Button } from 'react-bootstrap';
+import Button  from 'react-bootstrap/Button';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import LazyLoad from 'react-lazyload'

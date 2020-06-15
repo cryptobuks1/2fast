@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import { MDBInput } from "mdbreact"
 import LazyLoad from 'react-lazyload'
 import Loadable from 'react-loadable'

@@ -5,6 +5,8 @@ import unimageuser from '../image/unimageuser.jpg'
 import Header from './Header'
 import LazyLoad from 'react-lazyload'
 import Loadable from 'react-loadable'
+
+var IPModule = require('./helpers/Ip')
 export default class Profile extends Component {
     constructor(props){
         super(props)
@@ -19,7 +21,7 @@ export default class Profile extends Component {
         if(!jwt) {
             this.props.history.push('/login')
         }
-        axios.get('http://52.221.218.246:5001/api/v1/GetUserData' , 
+        axios.get(`http://${IPModule.getIP()}:5001/api/v1/GetUserData` , 
         { 
             headers : { 'x-access-token' : jwt  } 
         })
