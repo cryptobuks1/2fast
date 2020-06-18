@@ -12,6 +12,7 @@ export default class Profile extends Component {
         super(props)
         this.state = {
             rolesName : 'ไม่มีตำแหน่ง',
+            companyName : ' ',
             name : ' '
         }
     }
@@ -21,24 +22,33 @@ export default class Profile extends Component {
         if(!jwt) {
             this.props.history.push('/login')
         }
-        axios.get(`${IPModule.getIP()}:5001/api/v1/GetUserData` , 
+        const userID = localStorage.getItem('user_id')
+        axios.get(`${IPModule.getIP()}:5002/api/v1/GetUserData/${userID}` , 
         { 
             headers : { 'x-access-token' : jwt  } 
         })
         .then( res => {
             this.setState({
-                name: res.data.username
+                name: res.data.username,
+                companyName : res.data.companyName,
+                rolesName: res.data.rolename
             })
-            
+            console.log("userID = = " + userID)
+            console.log('companyName = ' + res.data.companyName)
+            console.log('rolename = ' + res.data.rolename)
+            console.log('username = ' + res.data.username)
+
         }).catch( err => {
             localStorage.removeItem('user')
+            localStorage.removeItem( 'user_id')
             this.props.history.push('/login')
         })
+        
     }
 
 
     render() {
-        const {name, rolesName} = this.state
+        const {name, rolesName, companyName} = this.state
         const imageUser = {
             width:'50%', 
             maxWidth: '250px',
@@ -67,8 +77,9 @@ export default class Profile extends Component {
             <div className="row">
                 <div className="col-4 col-md-4"></div>
                 <div className="col-8 col-md-8" style={{top:'10px'}}>
-                    <p class="font-weight-bold">{ name }</p>
-                    <p class="font-weight-bold">{ rolesName }</p>
+                    <p class="font-weight-bold">Username = { name }</p>
+                    <p class="font-weight-bold">rolename = { rolesName }</p>
+                    <p class="font-weight-bold">companyName = { companyName }</p>
                 </div>
             </div>
             </LazyLoad>

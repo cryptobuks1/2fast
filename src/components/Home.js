@@ -12,7 +12,10 @@ class Home extends Component {
     constructor(props){
         super(props)
         this.state = {
-
+            project_name: ' ',
+            project_created : ' ',
+            status_name : ' ',
+            userhasproject_id : ' '
         }
         
     }
@@ -22,15 +25,20 @@ class Home extends Component {
         if(!jwt) {
             this.props.history.push('/login')
         }
-        axios.get(`${IPModule.getIP()}:5001/api/v1/GetUserData` , 
+        axios.get(`${IPModule.getIP()}:5003/api/v1/userproject` , 
         { 
             headers : { 'x-access-token' : jwt  } 
         })
         .then( res => {
-
+                console.log('Status = ' + res.data.Status)
+                console.log('projectList = ' + res.data.projectList)
+                this.setState({
+                    projectList : res.data.projectList
+                })
             
         }).catch( err => {
             localStorage.removeItem('user')
+            localStorage.removeItem( 'user_id')
             this.props.history.push('/login')
         })
     }

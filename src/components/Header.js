@@ -15,6 +15,7 @@ class Header extends Component {
 
     logout(){
         localStorage.removeItem('user')
+        localStorage.removeItem( 'user_id')
         this.props.history.push('/login')
     }
 
