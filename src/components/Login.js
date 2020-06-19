@@ -97,7 +97,6 @@ export default class Login extends Component {
                 </LazyLoad>
               </div>
                 <form  onSubmit={ e => this.submit(e) }>
-                
                   <TextField
                     style={widthLabel}
                     variant="outlined"
