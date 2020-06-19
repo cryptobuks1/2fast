@@ -28,8 +28,8 @@ class AuthenticatedComponent extends Component {
         if(!jwt) {
             this.props.history.push('/login')
         }
-        axios.get(`${IPModule.getIP()}:5002/api/v1/GetUserData` , 
-        { headers : { 'x-access-token' : jwt }, proxy : { target: "http://localhost:5002"  }   } )
+        axios.get(`/api/v1/GetUserData` , 
+        { headers : { 'x-access-token' : jwt }, proxy : {  host: '127.0.0.1', port: 5002  }   } )
         .then( res => {
             this.setState({
                 user : res.data
