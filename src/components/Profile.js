@@ -23,7 +23,7 @@ export default class Profile extends Component {
             this.props.history.push('/login')
         }
         const userID = localStorage.getItem('user_id')
-        axios.get(`127.0.0.1:5002/api/v1/GetUserData/${userID}` , 
+        axios.get(`${IPModule.getIP()}:5002/api/v1/GetUserData/${userID}` , 
         { 
             headers : { 'x-access-token' : jwt  } 
         })
