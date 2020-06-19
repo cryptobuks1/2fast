@@ -25,9 +25,10 @@ class Home extends Component {
         if(!jwt) {
             this.props.history.push('/login')
         }
-        axios.get(`${IPModule.getIP()}:5003/api/v1/userproject` , 
+        axios.get(`/api/v1/userproject` , 
         { 
-            headers : { 'x-access-token' : jwt  } 
+            headers : { 'x-access-token' : jwt  } ,
+            proxy : {  host: 'localhost', port: 5003  }
         })
         .then( res => {
                 console.log('Status = ' + res.data.Status)
