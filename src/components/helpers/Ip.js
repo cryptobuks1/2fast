@@ -1,3 +1,3 @@
 module.exports.getIP = function(){
-    return 'http://localhost'
+    return 'http://13.229.93.6'
 }
