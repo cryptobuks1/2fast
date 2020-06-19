@@ -39,6 +39,7 @@ class AuthenticatedComponent extends Component {
             localStorage.removeItem('user')
             localStorage.removeItem( 'user_id')
             this.props.history.push('/login')
+            console.log('Error page auth = ' + err)
         })
 
     }
