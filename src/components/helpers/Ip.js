@@ -1,5 +1,6 @@
 module.exports.getIP = function(){
-    const url = window.location.hostname
-    return url
+    return 'http://127.0.0.1'
 }
+
+
 
