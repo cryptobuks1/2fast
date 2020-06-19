@@ -33,6 +33,9 @@ export default class Login extends Component {
         e.preventDefault()
         this.startSpinnerLoad()
         axios.post(`${IPModule.getIP()}:5001/login` , {
+            proxy: {
+                port: 5001,
+               },
             username : this.state.username,
             password : this.state.password
         })
