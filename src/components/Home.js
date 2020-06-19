@@ -28,7 +28,7 @@ class Home extends Component {
         axios.get(`/api/v1/userproject` , 
         { 
             headers : { 'x-access-token' : jwt  } ,
-            proxy : {  host: 'localhost', port: 5003  }
+            proxy : {  host: 'http://localhost', port: 5003  }
         })
         .then( res => {
                 console.log('Status = ' + res.data.Status)
