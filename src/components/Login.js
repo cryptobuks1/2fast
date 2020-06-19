@@ -32,7 +32,7 @@ export default class Login extends Component {
     submit(e){
         e.preventDefault()
         this.startSpinnerLoad()
-        axios.post(`${IPModule.getIP()}:5001/login` , {
+        axios.post(`127.0.0.1:5001/login` , {
             username : this.state.username,
             password : this.state.password
         })
