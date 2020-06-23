@@ -4,7 +4,6 @@ import axios from 'axios'
 import { getjwt } from '../helpers/jwt'
 import ImageUploader from "react-images-upload"
 import { MDBInput } from "mdbreact"
-
 import Loadable from 'react-loadable'
 
 export default class UploadImage extends Component {
@@ -13,7 +12,8 @@ export default class UploadImage extends Component {
         this.state = { 
               pictures: [] ,
               img : [] ,
-              locationToSetup : ''
+              locationToSetup : '',
+              imgBLOB : ' '
             };
         this.onDrop = this.onDrop.bind(this);
       }
@@ -32,12 +32,12 @@ export default class UploadImage extends Component {
           <div>
             <p>อัพโหลดรูปภาพ</p>
             <ImageUploader
-            withIcon={true}
-             buttonText="Choose images"
-             onChange={this.onDrop}
-             imgExtension={[".jpg", ".gif", ".png", ".jpeg", ".gif"]}
-             label={"Upload image"}
-             maxFileSize={15189789}
+              withIcon={true}
+              buttonText="Choose images"
+              onChange={this.onDrop}
+              imgExtension={[".jpg", ".gif", ".png", ".jpeg", ".gif"]}
+              label={"Upload image"}
+              maxFileSize={15189789}
             />
           </div>
             )
@@ -73,15 +73,48 @@ export default class UploadImage extends Component {
           [name]: value
         })
       }
-    
+
+      b64toBlob(b64, onsuccess, onerror) {
+        var img = new Image();
+        img.onerror = onerror;
+        img.onload = function onload() {
+            var canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob(onsuccess);
+        };
+        img.src = b64;
+    }
+
       sendImage(){
-          console.log('ส่งสถานที่ติดตั้ง = '+this.state.locationToSetup)
-          console.log("ส่งไฟล์รูป = " + this.state.pictures)
-          console.log(" ส่งรูป = " + this.state.img)
+        var base64Data = this.state.img
+        this.b64toBlob(base64Data,
+          function(blob) {
+              var url = window.URL.createObjectURL(blob);
+              console.log(url)
+          }, function(error) {
+              console.log("error = "+error)
+          });
+
+
+      }
+
+      showImageAfterUpload(){
+        if(this.state.imgBLOB === null){
+            console.log("this.state.imgBLOB = "+this.state.imgBLOB)
+        } else {
+          return (
+            <div style={{marginTop:'20px'}}>
+              <img alt="ds" src={this.state.imgBLOB} style={{width: '100%'}}/>
+            </div>
+          )
+        }
       }
 
       render() {
-        const { pictures, img } = this.state
+        const { pictures, img, imgBLOB } = this.state
 
         return (
           <div>
@@ -111,7 +144,7 @@ export default class UploadImage extends Component {
         <Button variant="btn btn-block btn-success" onClick={ () => this.sendImage()}>ส่งข้อมูล</Button>{' '}
         <br />
         </div>
-
+          { this.showImageAfterUpload(imgBLOB) }
         </div>
         </div>
         )

@@ -8,14 +8,12 @@ import Loadable from 'react-loadable'
 import LazyLoad from 'react-lazyload'
 
 var IPModule = require('./helpers/Ip')
+var RemoveLocal = require('./helpers/removeLocal')
 class Home extends Component {
     constructor(props){
         super(props)
         this.state = {
-            project_name: ' ',
-            project_created : ' ',
-            status_name : ' ',
-            userhasproject_id : ' '
+            projectList: [ ]
         }
         
     }
@@ -25,25 +23,55 @@ class Home extends Component {
         if(!jwt) {
             this.props.history.push('/login')
         }
-        axios.get(`${IPModule.getIP()}:5003/api/v1/userproject` , 
+       
+        axios.get(`${IPModule.getIP()}:5003/api/v1/teamproject` , 
         { 
             headers : { 'x-access-token' : jwt  } 
         })
         .then( res => {
-                console.log('Status = ' + res.data.Status)
-                console.log('projectList = ' + res.data.projectList)
                 this.setState({
                     projectList : res.data.projectList
                 })
-            
+                localStorage.removeItem('teamproject_ID')
         }).catch( err => {
-            localStorage.removeItem('user')
-            localStorage.removeItem( 'user_id')
+            RemoveLocal.removeDataLocalStorage()
             this.props.history.push('/login')
         })
     }
 
+    showJobList(projectList){
+    return projectList.map( jobList => {
+        if( jobList.status_name === "Active"){
+            return (
+                <div style={{   position:'relative',
+                                float: 'left',
+                                clear: 'both' ,
+                                width:'100%'    }}>
+                                
+                <Link className="text-warning"  to="/ProjectJob" 
+                      onClick={ () => localStorage.setItem( 'teamproject_ID' , jobList.teamprojecthasproject_public_id)} >
+                    <Alert variant="warning" > <p><h3>กำลังรอปฎิบัติงาน</h3></p> <p> ทีม {jobList.teamproject_name}</p> <p> ชื่อโปรเจค {jobList.project_name}</p> <p> สร้างเมื่อเวลา {jobList.created}</p> </Alert>
+                </Link>
+                </div> 
+            )
+        } else {
+            return (
+                <div style={{   position:'relative',
+                                float: 'left',
+                                clear: 'both' ,
+                                width:'100%'    }}>
+                <Link className="text-warning"  to="/ProjectJob"   
+                      onClick={ () => localStorage.setItem( 'teamproject_ID' , jobList.teamprojecthasproject_public_id)} >
+                    <Alert variant="success" > <p><h3>ปฎิบัติงานเสร็จเรียบร้อยแล้ว</h3></p> <p> ทีม {jobList.teamproject_name}</p> <p> ชื่อโปรเจค {jobList.project_name}</p> <p> สร้างเมื่อเวลา {jobList.created}</p> </Alert>
+                </Link>
+                </div> 
+            )
+        }
+    }) 
+    }
+
     render() {
+        const projectList = this.state.projectList
         const styleButton = {
             backgroundColor:'#E8DA10',
             top:'10px'
@@ -64,33 +92,16 @@ class Home extends Component {
         
         return (
             <div className="container-fluid">
-            <LazyLoad>
-            <Header />
-            <h2 className="text-center" style={{marginTop:'5%'}}>
-                งานที่ต้องติดตั้ง
-            </h2>
-            <br />
-        <div style={oudddt}>
-
-           <div style={iinnnn}>
-           <Link className="text-warning" to="/maintenance">
-                <Alert variant="success" > งานที่โรงพยาบาล </Alert>
-            </Link>
-           </div>
-
-           <div style={iinnnn}>
-           <Link className="text-warning" to="/maintenance">
-                <Alert variant="success" > งานที่เรือนจำ </Alert>
-            </Link>
-           </div>
-
-           <div style={iinnnn}>
-           <Link className="text-warning" to="/maintenance">
-                <Alert variant="danger" > งานที่โรงพยาบาล </Alert>
-            </Link>
-           </div>
-        </div>
-        </LazyLoad>
+                
+                <Header />
+                    <h2 className="text-center" style={{marginTop:'5%'}}>
+                        งานที่ต้องติดตั้ง
+                    </h2>
+                    <br />
+                    <div style={oudddt}>
+                        {this.showJobList(projectList)}
+                    </div>
+                
             </div>
         )
     }

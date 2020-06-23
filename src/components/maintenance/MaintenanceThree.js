@@ -4,9 +4,6 @@ import Button from 'react-bootstrap/Button'
 import { Rating } from 'semantic-ui-react'
 import SignaturePad from 'react-signature-canvas'
 import './styles.module.sig.css'
-import LazyLoad from 'react-lazyload'
-import Loadable from 'react-loadable'
-
 
 export default class MaintenanceThree extends Component {
     constructor(props){
@@ -82,7 +79,7 @@ export default class MaintenanceThree extends Component {
 
       return(
         <div>
-        <LazyLoad>
+
         <form>
           <MDBInput label="ชื่อผู้ดูแลสถานที่ติดตั้ง" name="SignatureName" onChange={this.onChange}/>
         </form>
@@ -116,7 +113,7 @@ export default class MaintenanceThree extends Component {
           <div className="container-fluid">
             <Button variant="btn btn-block btn-success" onClick={() => this.sendDataThree()} color="primary"> ส่งชื่อ </Button>{' '}
           </div>
-          </LazyLoad>
+
         <br />
         <div className="container-fluid">
         {signature

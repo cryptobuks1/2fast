@@ -41,8 +41,6 @@ export default class Login extends Component {
                     this.props.history.push('/')
                     this.stoptSpinnerLoad()
         }).catch( error => {
-            console.log('error login page = ' + error)
-            console.log('error message login page = ' + error.response.data.message)
             this.stoptSpinnerLoad()
             this.setState({
                 message : error.response.data.Error

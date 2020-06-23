@@ -7,6 +7,7 @@ import LazyLoad from 'react-lazyload'
 import Loadable from 'react-loadable'
 
 var IPModule = require('./helpers/Ip')
+var RemoveLocal = require('./helpers/removeLocal')
 export default class Profile extends Component {
     constructor(props){
         super(props)
@@ -33,14 +34,10 @@ export default class Profile extends Component {
                 companyName : res.data.companyName,
                 rolesName: res.data.rolename
             })
-            console.log("userID = = " + userID)
-            console.log('companyName = ' + res.data.companyName)
-            console.log('rolename = ' + res.data.rolename)
-            console.log('username = ' + res.data.username)
+            localStorage.removeItem('teamproject_ID')
 
         }).catch( err => {
-            localStorage.removeItem('user')
-            localStorage.removeItem( 'user_id')
+            RemoveLocal.removeDataLocalStorage()
             this.props.history.push('/login')
         })
         
@@ -75,11 +72,11 @@ export default class Profile extends Component {
             </div>
             
             <div className="row">
-                <div className="col-4 col-md-4"></div>
-                <div className="col-8 col-md-8" style={{top:'10px'}}>
-                    <p class="font-weight-bold">Username = { name }</p>
-                    <p class="font-weight-bold">rolename = { rolesName }</p>
-                    <p class="font-weight-bold">companyName = { companyName }</p>
+                <div className="col-3 col-md-3"></div>
+                <div className="col-9 col-md-9" style={{top:'10px'}}>
+                    <p class="font-weight-bold">Username : { name }</p>
+                    <p class="font-weight-bold">rolename : { rolesName }</p>
+                    <p class="font-weight-bold">companyName : { companyName }</p>
                 </div>
             </div>
             </LazyLoad>

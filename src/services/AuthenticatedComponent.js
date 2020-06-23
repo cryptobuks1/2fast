@@ -15,6 +15,7 @@ margin:auto;
 `;
 
 var IPModule = require('../components/helpers/Ip')
+var RemoveLocal = require('../components/helpers/removeLocal')
 class AuthenticatedComponent extends Component {
     constructor(props){
         super(props)
@@ -36,10 +37,8 @@ class AuthenticatedComponent extends Component {
             })
             localStorage.setItem( 'user_id' , res.data.user_id)
         }).catch( err => {
-            localStorage.removeItem('user')
-            localStorage.removeItem( 'user_id')
+            RemoveLocal.removeDataLocalStorage()
             this.props.history.push('/login')
-            console.log('Error page auth = ' + err)
         })
 
     }

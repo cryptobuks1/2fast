@@ -5,6 +5,8 @@ import { withRouter } from "react-router-dom"
 import './header.css'
 import IconSwipeableDrawer from './swipeableDrawer/IconSwipeableDrawer'
 import Loadable from 'react-loadable'
+
+var RemoveLocal = require('./helpers/removeLocal')
 class Header extends Component {
     constructor(props){
         super(props)
@@ -14,8 +16,7 @@ class Header extends Component {
     }
 
     logout(){
-        localStorage.removeItem('user')
-        localStorage.removeItem( 'user_id')
+        RemoveLocal.removeDataLocalStorage()
         this.props.history.push('/login')
     }
 

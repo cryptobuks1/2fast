@@ -60,7 +60,7 @@ export default class MaintenanceOne extends Component {
     }
         return (
             <div className="container-fluid">
-            <LazyLoad>
+
             <div>
             <Header />
             </div>
@@ -161,7 +161,7 @@ export default class MaintenanceOne extends Component {
       </MDBRow>
     </MDBContainer>
                 </div>
-                </LazyLoad>
+
             </div>
         )
     }

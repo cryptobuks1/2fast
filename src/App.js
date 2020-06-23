@@ -30,6 +30,10 @@ class App extends Component {
       loader: () => import('./services/AuthenticatedComponent'),
       loading: () => null
     });
+    const ProjectJob = Loadable({
+      loader: () => import('./components/ProjectJob'),
+      loading: () => null
+    });
 
     return (
       <BrowserRouter >
@@ -41,7 +45,9 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/maintenance" component={Maintenance} />
             <Route exact path="/profile" component={Profile} />
+            <Route exact path="/ProjectJob" component={ProjectJob} />
             
+            <Route  />
           </LazyLoad>
           </AuthenticatedComponent>
         </Switch>
