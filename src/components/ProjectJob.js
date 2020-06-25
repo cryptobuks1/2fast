@@ -31,8 +31,6 @@ async    componentDidMount(){
                 this.setState({
                     projectList : res.data.projectList
                 })
-                console.log("this.state.projectList")
-                console.log(this.state.projectList)
         }).catch( err => {
             RemoveLocal.removeDataLocalStorage()
             this.props.history.push('/login')
@@ -44,7 +42,10 @@ async    componentDidMount(){
         return  projectList.map( listProject => {
                     return (
                         <Link className="text-warning" to="/maintenance" >
-                            <Alert variant="warning" > <p>{listProject.job_name}</p> <p>{listProject.job_created}</p> </Alert>
+                            <Alert variant="warning" > 
+                                <p>{listProject.job_name}</p> 
+                                <p>{listProject.job_created}</p> 
+                            </Alert>
                         </Link>
                     )
                 } )

@@ -13,7 +13,7 @@ export default class UploadImage extends Component {
               pictures: [] ,
               img : [] ,
               locationToSetup : '',
-              imgBLOB : ' '
+              imgBLOB : null
             };
         this.onDrop = this.onDrop.bind(this);
       }
@@ -88,22 +88,25 @@ export default class UploadImage extends Component {
         img.src = b64;
     }
 
-      sendImage(){
-        var base64Data = this.state.img
-        this.b64toBlob(base64Data,
-          function(blob) {
-              var url = window.URL.createObjectURL(blob);
-              console.log(url)
-          }, function(error) {
+    async  sendImage(){
+      await  this.b64toBlob(this.state.img,
+          (blob) => {
+                var url = window.URL.createObjectURL(blob);
+                this.setState({ imgBLOB : url })
+                this.sentImageToDatabase()
+          }, (error) => {
               console.log("error = "+error)
           });
 
+      }
 
+      sentImageToDatabase(){
+        console.log("ปิ้วๆรูป = "+this.state.imgBLOB)
       }
 
       showImageAfterUpload(){
         if(this.state.imgBLOB === null){
-            console.log("this.state.imgBLOB = "+this.state.imgBLOB)
+          return <p style={{color:'red'}} >ยังไม่ได้อัพโหลดรูป</p>
         } else {
           return (
             <div style={{marginTop:'20px'}}>
@@ -111,6 +114,14 @@ export default class UploadImage extends Component {
             </div>
           )
         }
+      }
+
+      editImage(){
+      return  this.setState({
+          pictures: [] ,
+          img : [] ,
+          imgBLOB : null
+        })
       }
 
       render() {
@@ -122,8 +133,8 @@ export default class UploadImage extends Component {
           <div>
           
           <form action="" method="post">
-        <MDBInput label="สถานที่ติดตั้ง" name="locationToSetup" onChange={this.onChange}/>
-        </form>
+            <MDBInput label="สถานที่ติดตั้ง" name="locationToSetup" onChange={this.onChange}/>
+          </form>
 
       {/*  <ImageUploader
         withIcon={true}
@@ -141,7 +152,11 @@ export default class UploadImage extends Component {
         </ul>
 
         <div className="container-fluid">
-        <Button variant="btn btn-block btn-success" onClick={ () => this.sendImage()}>ส่งข้อมูล</Button>{' '}
+        <Button variant="btn btn-block btn-success" onClick={ () => this.sendImage()}>ส่งรูปภาพ</Button>
+          { this.state.imgBLOB != null &&  (<br />) }
+          { this.state.imgBLOB != null && (
+              <Button variant="btn btn-block btn-warning" onClick={ () => this.editImage()}>แก้ไขรูปภาพ</Button>
+          ) }
         <br />
         </div>
           { this.showImageAfterUpload(imgBLOB) }

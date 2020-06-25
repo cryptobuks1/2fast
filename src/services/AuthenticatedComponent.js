@@ -40,7 +40,6 @@ class AuthenticatedComponent extends Component {
             RemoveLocal.removeDataLocalStorage()
             this.props.history.push('/login')
         })
-
     }
 
     render() {
@@ -59,12 +58,14 @@ class AuthenticatedComponent extends Component {
                 </div>
                 </div>
             )
+        } else {
+            return (
+                <div>
+                    {this.props.children}
+                </div>
+            )
         }
-        return (
-            <div>
-                {this.props.children}
-            </div>
-        )
+        
     }
 }
 

@@ -50,7 +50,11 @@ class Home extends Component {
                                 
                 <Link className="text-warning"  to="/ProjectJob" 
                       onClick={ () => localStorage.setItem( 'teamproject_ID' , jobList.teamprojecthasproject_public_id)} >
-                    <Alert variant="warning" > <p><h3>กำลังรอปฎิบัติงาน</h3></p> <p> ทีม {jobList.teamproject_name}</p> <p> ชื่อโปรเจค {jobList.project_name}</p> <p> สร้างเมื่อเวลา {jobList.created}</p> </Alert>
+                    <Alert variant="warning" > 
+                        <p><h3>กำลังรอปฎิบัติงาน</h3></p> 
+                        <p> ทีม {jobList.teamproject_name}</p> 
+                        <p> ชื่อโปรเจค {jobList.project_name}</p> 
+                        <p> สร้างเมื่อเวลา {jobList.created}</p> </Alert>
                 </Link>
                 </div> 
             )
@@ -62,7 +66,11 @@ class Home extends Component {
                                 width:'100%'    }}>
                 <Link className="text-warning"  to="/ProjectJob"   
                       onClick={ () => localStorage.setItem( 'teamproject_ID' , jobList.teamprojecthasproject_public_id)} >
-                    <Alert variant="success" > <p><h3>ปฎิบัติงานเสร็จเรียบร้อยแล้ว</h3></p> <p> ทีม {jobList.teamproject_name}</p> <p> ชื่อโปรเจค {jobList.project_name}</p> <p> สร้างเมื่อเวลา {jobList.created}</p> </Alert>
+                    <Alert variant="success" > 
+                        <p><h3>ปฎิบัติงานเสร็จเรียบร้อยแล้ว</h3></p> 
+                        <p> ทีม {jobList.teamproject_name}</p> 
+                        <p> ชื่อโปรเจค {jobList.project_name}</p> 
+                        <p> สร้างเมื่อเวลา {jobList.created}</p> </Alert>
                 </Link>
                 </div> 
             )
