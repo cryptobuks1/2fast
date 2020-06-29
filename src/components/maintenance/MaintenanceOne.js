@@ -7,9 +7,12 @@ import UploadImage from './UploadImage'
 import MaintenanceTwo from './MaintenanceTwo'
 import MaintenanceThree from './MaintenanceThree'
 import Button  from 'react-bootstrap/Button';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import HelpIcon from '@material-ui/icons/Help';
+import GradeIcon from '@material-ui/icons/Grade';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import LazyLoad from 'react-lazyload'
+
 export default class MaintenanceOne extends Component {
     constructor(props){
         super(props)
@@ -77,7 +80,7 @@ export default class MaintenanceOne extends Component {
                 <MDBStep form>
                   <span onClick={this.swapFormActive(1)(1)}>
                     <MDBBtn color={ this.state.formActivePanel1===1 ? "indigo" : "default" } circle>
-                      รูป1
+                      <LocationOnIcon fontSize="small" />
                     </MDBBtn>
                   </span>
                   <p>ขั้นที่ 1</p>
@@ -86,7 +89,7 @@ export default class MaintenanceOne extends Component {
                 <MDBStep form>
                   <span onClick={this.swapFormActive(1)(2)}>
                     <MDBBtn color={ this.state.formActivePanel1===2 ? "indigo" : "default" } circle>
-                    รูป2
+                      <HelpIcon fontSize="small" />
                     </MDBBtn>
                   </span>
                   <p>ขั้นที่ 2</p>
@@ -95,7 +98,7 @@ export default class MaintenanceOne extends Component {
                 <MDBStep form>
                   <span onClick={this.swapFormActive(1)(3)}>
                     <MDBBtn color={ this.state.formActivePanel1===3 ? "indigo" : "default" } circle>
-                    รูป3
+                      <GradeIcon fontSize="small" />
                     </MDBBtn>
                   </span>
                   <p>ขั้นที่ 3</p>

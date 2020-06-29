@@ -74,9 +74,9 @@ export default class Profile extends Component {
             <div className="row">
                 <div className="col-3 col-md-3"></div>
                 <div className="col-9 col-md-9" style={{top:'10px'}}>
-                    <p class="font-weight-bold">Username : { name }</p>
-                    <p class="font-weight-bold">rolename : { rolesName }</p>
-                    <p class="font-weight-bold">companyName : { companyName }</p>
+                    <p class="font-weight-bold">ชื่อ : { name }</p>
+                    <p class="font-weight-bold">ตำแหน่ง : { rolesName }</p>
+                    <p class="font-weight-bold">บริษัท : { companyName }</p>
                 </div>
             </div>
             </LazyLoad>

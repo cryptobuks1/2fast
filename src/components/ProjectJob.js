@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Header from './Header'
 import axios from 'axios'
 import { getjwt } from '../components/helpers/jwt'
-import LazyLoad from 'react-lazyload'
 import { Link } from "react-router-dom"
 import Alert from 'react-bootstrap/Alert'
 
@@ -73,7 +72,6 @@ async    componentDidMount(){
         }
         return (
             <div className="container-fluid">
-                <LazyLoad>
                 <Header />
                     <h2 className="text-center" style={{marginTop:'5%'}}>
                         งานที่ต้องติดตั้ง
@@ -82,7 +80,6 @@ async    componentDidMount(){
                     <div style={oudddt}>
                         {this.showProjectList(projectList)}
                     </div>
-                </LazyLoad>
             </div>
         )
     }

@@ -85,20 +85,6 @@ class IconSwipeableDrawer extends Component {
             {val => {
               var per = val / 150;
               return (
-              /*  <div style={{ backgroundColor: `rgba(255,249,167, ${per})`,
-                  width: "100%",
-                  height: "100%"
-                  }} >
-                
-                <div>
-                  <Button onClick={() => this.props.onLogout()} style={styleButton}>Logout</Button> 
-                </div>
-                <Divider />
-                <div>
-                  <Button onClick={() => this.props.onLogout()} style={styleButton}>Logout</Button>
-                </div>
-                </div> */
-
               <div style={{ 
                       backgroundColor: `rgba(255,255,255, ${per})`,
                       width: "100%",

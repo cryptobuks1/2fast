@@ -6,8 +6,8 @@ export default class MaintenanceTwo extends Component {
     constructor(props){
         super(props)
         this.state = {
-            StepTwoFieldOne : '',
-            StepTwoFieldTwo : ''
+            StepTwoFieldOne : ' ',
+            StepTwoFieldTwo : ' '
         }
     }
 

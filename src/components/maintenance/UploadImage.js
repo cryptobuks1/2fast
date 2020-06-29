@@ -13,7 +13,8 @@ export default class UploadImage extends Component {
               pictures: [] ,
               img : [] ,
               locationToSetup : '',
-              imgBLOB : null
+              imgBLOB : null,
+              message : null,
             };
         this.onDrop = this.onDrop.bind(this);
       }
@@ -23,7 +24,7 @@ export default class UploadImage extends Component {
           pictures : pictureFiles,
           img : pictureDataURLs,
         });
-        //console.log('pictureDataURLs = '+ pictureDataURLs)
+
       }
 
       showNameImageUpload(pictures){
@@ -102,6 +103,7 @@ export default class UploadImage extends Component {
 
       sentImageToDatabase(){
         console.log("ปิ้วๆรูป = "+this.state.imgBLOB)
+        this.showMessageUploadComplete()
       }
 
       showImageAfterUpload(){
@@ -124,8 +126,21 @@ export default class UploadImage extends Component {
         })
       }
 
+      showMessageUploadComplete(){
+        this.setState({
+          message : 'อัพโหลดรูปภาพแล้ว'
+        })
+        if( this.state.message !== undefined ){
+                setTimeout(() => {
+                    this.setState({
+                      message : null
+                    }) 
+                }, 3000);
+        }   
+    }
+
       render() {
-        const { pictures, img, imgBLOB } = this.state
+        const { pictures, img, imgBLOB, message } = this.state
 
         return (
           <div>
@@ -157,9 +172,14 @@ export default class UploadImage extends Component {
           { this.state.imgBLOB != null && (
               <Button variant="btn btn-block btn-warning" onClick={ () => this.editImage()}>แก้ไขรูปภาพ</Button>
           ) }
-        <br />
+          <br />
+          { this.state.imgBLOB != null &&  (
+            <p style={{ color:'green', marginTop:'3px'}}>{message}</p>
+          ) }
+          <br />
+        { this.showImageAfterUpload(imgBLOB) }
         </div>
-          { this.showImageAfterUpload(imgBLOB) }
+          
         </div>
         </div>
         )

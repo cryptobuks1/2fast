@@ -5,7 +5,6 @@ import Header from './Header'
 import Alert from 'react-bootstrap/Alert'
 import { Link } from "react-router-dom"
 import Loadable from 'react-loadable'
-import LazyLoad from 'react-lazyload'
 
 var IPModule = require('./helpers/Ip')
 var RemoveLocal = require('./helpers/removeLocal')

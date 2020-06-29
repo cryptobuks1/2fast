@@ -9,11 +9,11 @@ export default class MaintenanceThree extends Component {
     constructor(props){
         super(props)
         this.state={
-            signature: null,
-            SignatureName: '',
+            SignatureName: ' ',
             valueStar : ' ',
             messageRating : 'โปรดประเมินการติดตั้ง',
-            suggestion : ' '
+            suggestion : ' ',
+            imgBLOB : null
         }
     }
 
@@ -58,12 +58,36 @@ export default class MaintenanceThree extends Component {
     clear = () => {
       this.sigPad.clear()
       this.setState({
-        signature: null
+        imgBLOB: null
       })
     }
     trim = () => {
-      this.setState({signature: this.sigPad.getTrimmedCanvas()
-        .toDataURL('image/jpg')})
+      this.convertImageToBlob()
+    }
+
+    b64toBlob(b64, onsuccess, onerror) {
+      var img = new Image();
+      img.onerror = onerror;
+      img.onload = function onload() {
+          var canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          canvas.toBlob(onsuccess);
+      };
+      img.src = b64;
+    }
+
+  async  convertImageToBlob(){
+    var imgs = this.sigPad.getTrimmedCanvas().toDataURL('image/jpg')
+    await  this.b64toBlob( imgs ,
+        (blob) => {
+              var url = window.URL.createObjectURL(blob);
+              this.setState({ imgBLOB : url })
+        }, (error) => {
+            console.log("error = "+error)
+        });
     }
 
     async  sendDataThree(){
@@ -71,11 +95,18 @@ export default class MaintenanceThree extends Component {
         console.log('SignatureName = '+ this.state.SignatureName)
         console.log('valueStar = '+ this.state.valueStar)
         console.log('suggestion = '+  this.state.suggestion)
-        console.log('signature = '+ this.state.signature)
-
+        this.uploadImage()
+        
     }
+
+    uploadImage(){
+      setTimeout(() => {
+        console.log('img blob = '+ this.state.imgBLOB)
+      }, 500);
+    }
+
     render () {
-      const { signature, messageRating} = this.state
+      const { messageRating, imgBLOB} = this.state
 
       return(
         <div>
@@ -116,12 +147,7 @@ export default class MaintenanceThree extends Component {
 
         <br />
         <div className="container-fluid">
-        {signature
-          ? <img
-              className="sigImage"
-              alt="signature"
-              src={signature} />
-          : null }
+        { this.state.imgBLOB &&  ( <img  className="sigImage" alt="signature" src={imgBLOB} /> ) }
         </div>
         
       </div>
