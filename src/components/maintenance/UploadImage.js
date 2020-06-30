@@ -102,7 +102,7 @@ export default class UploadImage extends Component {
       }
 
       sentImageToDatabase(){
-        console.log("ปิ้วๆรูป = "+this.state.imgBLOB)
+        console.log(this.state.imgBLOB)
         this.showMessageUploadComplete()
       }
 
