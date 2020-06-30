@@ -45,15 +45,16 @@ class Home extends Component {
                 <div style={{   position:'relative',
                                 float: 'left',
                                 clear: 'both' ,
-                                width:'100%'    }}>
+                                width:'100%'    }}  key={jobList.teamprojecthasproject_public_id} >
                                 
-                <Link className="text-warning"  to="/ProjectJob" 
+                <Link className="text-warning"  to="/ProjectJob"
                       onClick={ () => localStorage.setItem( 'teamproject_ID' , jobList.teamprojecthasproject_public_id)} >
                     <Alert variant="warning" > 
-                        <p><h3>กำลังรอปฎิบัติงาน</h3></p> 
+                        <h3>กำลังรอปฎิบัติงาน</h3>
                         <p> ทีม {jobList.teamproject_name}</p> 
                         <p> ชื่อโปรเจค {jobList.project_name}</p> 
-                        <p> สร้างเมื่อเวลา {jobList.created}</p> </Alert>
+                        <p> สร้างเมื่อเวลา {jobList.created}</p> 
+                    </Alert>
                 </Link>
                 </div> 
             )
@@ -62,14 +63,15 @@ class Home extends Component {
                 <div style={{   position:'relative',
                                 float: 'left',
                                 clear: 'both' ,
-                                width:'100%'    }}>
-                <Link className="text-warning"  to="/ProjectJob"   
+                                width:'100%'    }}  key={jobList.teamprojecthasproject_public_id} >
+                <Link className="text-warning"  to="/ProjectJob"
                       onClick={ () => localStorage.setItem( 'teamproject_ID' , jobList.teamprojecthasproject_public_id)} >
                     <Alert variant="success" > 
-                        <p><h3>ปฎิบัติงานเสร็จเรียบร้อยแล้ว</h3></p> 
+                        <h3>ปฎิบัติงานเสร็จเรียบร้อยแล้ว</h3>
                         <p> ทีม {jobList.teamproject_name}</p> 
                         <p> ชื่อโปรเจค {jobList.project_name}</p> 
-                        <p> สร้างเมื่อเวลา {jobList.created}</p> </Alert>
+                        <p> สร้างเมื่อเวลา {jobList.created}</p> 
+                    </Alert>
                 </Link>
                 </div> 
             )
