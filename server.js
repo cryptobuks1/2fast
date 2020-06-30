@@ -1,16 +1,37 @@
-const express = require('express');
+import express from 'express';
+import path from 'path';
+import open from 'open';
 
-const path = require('path');
+/* eslint-disable no-console */
+
 const port = process.env.PORT || 8080;
 const app = express();
 
-// the __dirname is the current directory from where the script is running
-app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('/ping', function (req, res) {
- return res.send('pong');
+
+app.get('*.js', function(req, res, next) {
+ req.url = req.url + '.gz';
+ res.set('Content-Encoding', 'gzip');
+ res.set('Content-Type', 'text/javascript');
+ next();
 });
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+
+app.get('*.css', function(req, res, next) {
+ req.url = req.url + '.gz';
+ res.set('Content-Encoding', 'gzip');
+ res.set('Content-Type', 'text/css');
+ next();
 });
-app.listen(port);
+
+app.use(express.static('dist'));
+
+app.get('*', function(req, res) {
+  res.sendFile(path.join( __dirname, '../dist/index.html'));
+});
+
+app.listen(port, function(err) {
+  if (err) {
+    console.log(err);
+  } else {
+    open(`http://localhost:${port}`);
+  }
+});
