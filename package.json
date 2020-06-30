@@ -60,7 +60,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6"
+    "@babel/core": "^7.9.6",
+    "terser-brunch": "^4.0.0"
   },
   "presets": [
     "@babel/preset-react",
