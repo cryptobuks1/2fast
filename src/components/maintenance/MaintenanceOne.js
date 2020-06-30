@@ -1,17 +1,36 @@
 import React, { Component } from 'react'
-import Header from '../Header'
+//import Header from '../Header'
 import axios from 'axios'
 import { getjwt } from '../helpers/jwt'
 import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBCardBody, MDBInput } from "mdbreact"
-import UploadImage from './UploadImage'
-import MaintenanceTwo from './MaintenanceTwo'
-import MaintenanceThree from './MaintenanceThree'
+//import UploadImage from './UploadImage'
+//import MaintenanceTwo from './MaintenanceTwo'
+//import MaintenanceThree from './MaintenanceThree'
 import Button  from 'react-bootstrap/Button';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import HelpIcon from '@material-ui/icons/Help';
 import GradeIcon from '@material-ui/icons/Grade';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+
+import Loadable from 'react-loadable'
+
+const Header = Loadable({
+  loader: () => import('../Header'),
+  loading: () => null
+});
+const UploadImage = Loadable({
+  loader: () => import('./UploadImage'),
+  loading: () => null
+});
+const MaintenanceTwo = Loadable({
+  loader: () => import('./MaintenanceTwo'),
+  loading: () => null
+});
+const MaintenanceThree = Loadable({
+  loader: () => import('./MaintenanceThree'),
+  loading: () => null
+});
 
 export default class MaintenanceOne extends Component {
     constructor(props){

@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { getjwt } from '../components/helpers/jwt'
-import Header from './Header'
+//import Header from './Header'
 import Alert from 'react-bootstrap/Alert'
 import { Link } from "react-router-dom"
 import Loadable from 'react-loadable'
 
 var IPModule = require('./helpers/Ip')
 var RemoveLocal = require('./helpers/removeLocal')
+
+const Header = Loadable({
+    loader: () => import('./Header'),
+    loading: () => null
+  });
+  
 class Home extends Component {
     constructor(props){
         super(props)

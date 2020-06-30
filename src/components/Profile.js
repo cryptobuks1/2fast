@@ -2,12 +2,18 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { getjwt } from '../components/helpers/jwt'
 import unimageuser from '../image/unimageuser.jpg'
-import Header from './Header'
+//import Header from './Header'
 import LazyLoad from 'react-lazyload'
 import Loadable from 'react-loadable'
 
 var IPModule = require('./helpers/Ip')
 var RemoveLocal = require('./helpers/removeLocal')
+
+const Header = Loadable({
+    loader: () => import('./Header'),
+    loading: () => null
+  });
+
 export default class Profile extends Component {
     constructor(props){
         super(props)

@@ -6,8 +6,6 @@ import { BrowserRouter , Switch, Route } from "react-router-dom"
 //import Profile from './components/Profile'
 import Loadable from 'react-loadable'
 //import Maintenance from './components/maintenance/MaintenanceOne'
-class App extends Component {
-  render() {
 
     const Login = Loadable({
       loader: () => import('./components/Login'),
@@ -33,7 +31,8 @@ class App extends Component {
       loader: () => import('./components/ProjectJob'),
       loading: () => null
     });
-
+class App extends Component {
+  render() {
     return (
       <BrowserRouter >
         <Switch>
