@@ -6,6 +6,8 @@ import ImageUploader from "react-images-upload"
 import { MDBInput } from "mdbreact"
 import Loadable from 'react-loadable'
 
+var IPModule = require('../helpers/Ip')
+var RemoveLocal = require('../helpers/removeLocal')
 export default class UploadImage extends Component {
     constructor(props) {
         super(props);
@@ -18,6 +20,26 @@ export default class UploadImage extends Component {
             };
         this.onDrop = this.onDrop.bind(this);
       }
+
+  async componentDidMount(){
+        const jwt = getjwt()
+        if(!jwt) {
+            this.props.history.push('/login')
+        }
+        const teamID = await localStorage.getItem('teamproject_ID')
+        axios.get(`${IPModule.getIP()}:5003/api/v1/projectjob/${teamID}` , 
+        { 
+            headers : { 'x-access-token' : jwt  } 
+        })
+        .then( res => {
+                
+        }).catch( err => {
+            RemoveLocal.removeDataLocalStorage()
+            this.props.history.push('/login')
+        })
+        
+    }
+
 
       onDrop(pictureFiles, pictureDataURLs) {
         this.setState({
@@ -45,9 +67,7 @@ export default class UploadImage extends Component {
         } else {
         return  pictures.map( image => {
             return (
-                  <li>
-                    <p>{image.name}</p>
-                  </li>
+                <p>{image.name}</p>
             )
           })
         }
@@ -101,9 +121,32 @@ export default class UploadImage extends Component {
 
       }
 
-      sentImageToDatabase(){
-        console.log(this.state.imgBLOB)
-        this.showMessageUploadComplete()
+  async sentImageToDatabase(){
+      const teamID = await localStorage.getItem('teamproject_ID')
+      const jwt = await getjwt()
+        if(!jwt) {
+            this.props.history.push('/login')
+        }
+
+        axios({
+          method: 'post',
+          url: `${IPModule.getIP()}:3000/api/v1/posts/`,
+          headers : { 'x-access-token' : jwt  } ,
+            data: {
+              "project_pair_key" : `${teamID}`,
+              "data" : {
+                      "locationToSetup" : `${this.state.locationToSetup}`,
+                      "imageLocation" : `${this.state.imgBLOB}`
+              }
+          }
+        }).then( (res) => {
+          this.showImageAfterUpload()
+          this.showMessageUploadComplete()
+          console.log("pass "+ res)
+        }).catch( (err) => {
+          console.log("err "+ err)
+          this.showMessageUploadError()
+        })
       }
 
       showImageAfterUpload(){
@@ -138,6 +181,17 @@ export default class UploadImage extends Component {
                 }, 3000);
         }   
     }
+
+    showMessageUploadError(){
+      this.setState({
+        message : 'อัพโหลดรูปภาพไม่สำเร็จ โปรดอัพโหลดใหม่'
+      })
+          setTimeout(() => {
+              this.setState({
+                  message : null
+              }) 
+          }, 3000);
+  }
 
       render() {
         const { pictures, img, imgBLOB, message } = this.state
@@ -174,7 +228,7 @@ export default class UploadImage extends Component {
           ) }
           <br />
           { this.state.imgBLOB != null &&  (
-            <p style={{ color:'green', marginTop:'3px'}}>{message}</p>
+            <p style={{ marginTop:'3px'}}>{message}</p>
           ) }
           <br />
         { this.showImageAfterUpload(imgBLOB) }
