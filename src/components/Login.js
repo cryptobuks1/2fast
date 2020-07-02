@@ -43,7 +43,6 @@ export default class Login extends Component {
         }).catch( error => {
             this.stoptSpinnerLoad()
             
-            console.log(error.response)
             if(error.response === undefined){
                 this.setState({
                     message : 'Server Error'

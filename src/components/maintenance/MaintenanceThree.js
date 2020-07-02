@@ -3,19 +3,72 @@ import { MDBInput } from "mdbreact"
 import Button from 'react-bootstrap/Button'
 import { Rating } from 'semantic-ui-react'
 import SignaturePad from 'react-signature-canvas'
+import axios from 'axios'
+import { getjwt } from '../helpers/jwt'
 import './styles.module.sig.css'
+
+var IPModule = require('../helpers/Ip')
+var RemoveLocal = require('../helpers/removeLocal')
 
 export default class MaintenanceThree extends Component {
     constructor(props){
         super(props)
         this.state={
-            SignatureName: ' ',
+            id : ' ',
+            locationToSetup : ' ',
+            imgBLOB : ' ',
+            problem : 'ปัญหาที่พบเจอขณะติดตั้ง',
+            fixed : 'วิธีแก้ไข',
+            message : null,
+
+            SignatureName: 'ชื่อผู้ดูแลสถานที่ติดตั้ง',
             valueStar : ' ',
             messageRating : 'โปรดประเมินการติดตั้ง',
-            suggestion : ' ',
-            imgBLOB : null
+            suggestion : 'ข้อเสนอแนะ',
+            imgSignatureBLOB : null
         }
     }
+
+    async componentDidMount(){
+      const jwt = getjwt()
+      if(!jwt) {
+          this.props.history.push('/login')
+      }
+      axios.get(`${IPModule.getIP()}:3000/api/v1/posts` , 
+      { 
+          headers : { 'x-access-token' : jwt  } 
+      })
+      .then( res => {
+          if( res.data.rows[0].data[0].SignatureName && res.data.rows[0].data[0].valueStar ){
+              this.setState({
+                  id : res.data.rows[0].id,
+                  locationToSetup : res.data.rows[0].data[0].locationToSetup,
+                  imgBLOB : res.data.rows[0].data[0].imgBLOB,
+                  problem : res.data.rows[0].data[0].problem,
+                  fixed : res.data.rows[0].data[0].fixed,
+
+                  SignatureName : res.data.rows[0].data[0].SignatureName,
+                  valueStar : res.data.rows[0].data[0].valueStar,
+                  messageRating : res.data.rows[0].data[0].messageRating,
+                  suggestion : res.data.rows[0].data[0].suggestion,
+                  imgSignatureBLOB : res.data.rows[0].data[0].imgSignatureBLOB
+              })
+          } else {
+              this.setState({
+                  id : res.data.rows[0].id,
+                  locationToSetup : res.data.rows[0].data[0].locationToSetup,
+                  imgBLOB : res.data.rows[0].data[0].imgBLOB,
+                  problem : res.data.rows[0].data[0].problem,
+                  fixed : res.data.rows[0].data[0].fixed,
+              })
+          }
+
+      }).catch( err => {
+          RemoveLocal.removeDataLocalStorage()
+          this.props.history.push('/login')
+      })
+      
+  }
 
     onChange = e => {
       const { name, value } = e.target
@@ -58,7 +111,7 @@ export default class MaintenanceThree extends Component {
     clear = () => {
       this.sigPad.clear()
       this.setState({
-        imgBLOB: null
+        imgSignatureBLOB: null
       })
     }
     trim = () => {
@@ -84,7 +137,7 @@ export default class MaintenanceThree extends Component {
     await  this.b64toBlob( imgs ,
         (blob) => {
               var url = window.URL.createObjectURL(blob);
-              this.setState({ imgBLOB : url })
+              this.setState({ imgSignatureBLOB : url })
         }, (error) => {
             console.log("error = "+error)
         });
@@ -92,27 +145,70 @@ export default class MaintenanceThree extends Component {
 
     async  sendDataThree(){
       await  this.trim()
-        console.log('SignatureName = '+ this.state.SignatureName)
-        console.log('valueStar = '+ this.state.valueStar)
-        console.log('suggestion = '+  this.state.suggestion)
-        this.uploadImage()
-        
+      await  this.uploadImage() 
     }
 
-    uploadImage(){
+  async  uploadImage(){
+      const teamID = await localStorage.getItem('teamproject_ID')
+      const jwt = await getjwt()
+        if(!jwt) {
+            this.props.history.push('/login')
+        }
       setTimeout(() => {
-        console.log('img blob = '+ this.state.imgBLOB)
+        axios({
+          method: 'put',
+          url: `${IPModule.getIP()}:3000/api/v1/posts/${this.state.id}`,
+          headers : { 'x-access-token' : jwt  } ,
+            data: {
+              "project_pair_key" : `${teamID}`,
+              "data" : {
+                      "locationToSetup" : `${this.state.locationToSetup}`,
+                      "imgBLOB" : `${this.state.imgBLOB}`,
+                      "problem" : `${this.state.problem}`,
+                      "fixed" : `${this.state.fixed}`,
+                      "SignatureName" : `${this.state.SignatureName}`,
+                      "valueStar" : `${this.state.valueStar}`,
+                      "messageRating" : `${this.state.messageRating}`,
+                      "suggestion" : `${this.state.suggestion}`,
+                      "imgSignatureBLOB" : `${this.state.imgSignatureBLOB}`,
+              }
+          }
+        }).then( res => {
+          this.setState({
+            message : 'ส่งข้อมูลสำเร็จ'
+          })
+        }).catch( error => {
+
+          this.setState({
+            message : 'ส่งข้อมูลไม่สำเร็จ'
+          })
+          
+        })
+
       }, 500);
     }
 
+    showMessageUpload(){
+      if(this.state.message){
+        if(this.state.message === "ส่งข้อมูลสำเร็จ"){
+            return <p style={{ marginTop:'3px', color:'green' }} >{this.state.message}</p>
+        } else if(this.state.message === "ส่งข้อมูลไม่สำเร็จ"){
+            return <p style={{ marginTop:'3px', color:'red' }} >{this.state.message}</p>
+        } else {
+            return <p style={{ marginTop:'3px', color:'red' }} >internet error</p>
+        }
+      }
+
+    }
+
     render () {
-      const { messageRating, imgBLOB} = this.state
+      const { messageRating, imgSignatureBLOB} = this.state
 
       return(
         <div>
 
         <form>
-          <MDBInput label="ชื่อผู้ดูแลสถานที่ติดตั้ง" name="SignatureName" onChange={this.onChange}/>
+          <MDBInput label={`${this.state.SignatureName}`} name="SignatureName" onChange={this.onChange}/>
         </form>
           <br />
           <div>
@@ -122,7 +218,7 @@ export default class MaintenanceThree extends Component {
           <Rating maxRating={5} icon='star' size='massive' onRate={this.handleRate}/>
         </div>
         <form>
-        <MDBInput label="ข้อเสนอแนะ" name="suggestion" onChange={this.onChange}/>
+        <MDBInput label={`${this.state.suggestion}`} name="suggestion" onChange={this.onChange}/>
         </form>
 
         <form>
@@ -143,11 +239,12 @@ export default class MaintenanceThree extends Component {
         <br />
           <div className="container-fluid">
             <Button variant="btn btn-block btn-success" onClick={() => this.sendDataThree()} color="primary"> ส่งชื่อ </Button>{' '}
+            <br />
+            {this.showMessageUpload()}
           </div>
-
         <br />
         <div className="container-fluid">
-        { this.state.imgBLOB &&  ( <img  className="sigImage" alt="signature" src={imgBLOB} /> ) }
+        { this.state.imgSignatureBLOB &&  ( <img  className="sigImage" alt="signature" src={imgSignatureBLOB} /> ) }
         </div>
         
       </div>

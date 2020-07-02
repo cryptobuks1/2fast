@@ -14,7 +14,7 @@ export default class UploadImage extends Component {
         this.state = { 
               pictures: [] ,
               img : [] ,
-              locationToSetup : '',
+              locationToSetup : ' ',
               imgBLOB : null,
               message : null,
             };
@@ -27,12 +27,19 @@ export default class UploadImage extends Component {
             this.props.history.push('/login')
         }
         const teamID = await localStorage.getItem('teamproject_ID')
-        axios.get(`${IPModule.getIP()}:5003/api/v1/projectjob/${teamID}` , 
+        axios.get(`${IPModule.getIP()}:3000/api/v1/posts` , 
         { 
             headers : { 'x-access-token' : jwt  } 
         })
         .then( res => {
-                
+            if(res.data.rows[0].data[0].locationToSetup && res.data.rows[0].data[0].imgBLOB){
+              this.setState({ 
+                locationToSetup : res.data.rows[0].data[0].locationToSetup,
+                imgBLOB : res.data.rows[0].data[0].imgBLOB
+               })
+            } else {
+              this.setState({ locationToSetup : 'สถานที่ติดตั้ง',  imgBLOB : null })
+            }
         }).catch( err => {
             RemoveLocal.removeDataLocalStorage()
             this.props.history.push('/login')
@@ -89,7 +96,6 @@ export default class UploadImage extends Component {
 
       onChange = e => {
         const { name, value } = e.target
-    
         this.setState({
           [name]: value
         })
@@ -136,16 +142,19 @@ export default class UploadImage extends Component {
               "project_pair_key" : `${teamID}`,
               "data" : {
                       "locationToSetup" : `${this.state.locationToSetup}`,
-                      "imageLocation" : `${this.state.imgBLOB}`
+                      "imgBLOB" : `${this.state.imgBLOB}`
               }
           }
-        }).then( (res) => {
-          this.showImageAfterUpload()
-          this.showMessageUploadComplete()
-          console.log("pass "+ res)
-        }).catch( (err) => {
-          console.log("err "+ err)
-          this.showMessageUploadError()
+        }).then( res => {
+          this.setState({
+            message : 'ส่งข้อมูลสำเร็จ'
+          })
+        }).catch( error => {
+
+          this.setState({
+            message : 'ส่งข้อมูลไม่สำเร็จ'
+          })
+          
         })
       }
 
@@ -169,32 +178,21 @@ export default class UploadImage extends Component {
         })
       }
 
-      showMessageUploadComplete(){
-        this.setState({
-          message : 'อัพโหลดรูปภาพแล้ว'
-        })
-        if( this.state.message !== undefined ){
-                setTimeout(() => {
-                    this.setState({
-                      message : null
-                    }) 
-                }, 3000);
-        }   
-    }
+      showMessageUpload(){
+        if(this.state.message){
+          if(this.state.message === "ส่งข้อมูลสำเร็จ"){
+              return <p style={{ marginTop:'3px', color:'green' }} >{this.state.message}</p>
+          } else if(this.state.message === "ส่งข้อมูลไม่สำเร็จ"){
+              return <p style={{ marginTop:'3px', color:'red' }} >{this.state.message}</p>
+          } else {
+              return <p style={{ marginTop:'3px', color:'red' }} >internet error</p>
+          }
+        }
 
-    showMessageUploadError(){
-      this.setState({
-        message : 'อัพโหลดรูปภาพไม่สำเร็จ โปรดอัพโหลดใหม่'
-      })
-          setTimeout(() => {
-              this.setState({
-                  message : null
-              }) 
-          }, 3000);
-  }
+      }
 
       render() {
-        const { pictures, img, imgBLOB, message } = this.state
+        const { pictures, img, imgBLOB } = this.state
 
         return (
           <div>
@@ -202,7 +200,7 @@ export default class UploadImage extends Component {
           <div>
           
           <form action="" method="post">
-            <MDBInput label="สถานที่ติดตั้ง" name="locationToSetup" onChange={this.onChange}/>
+            <MDBInput label={`${this.state.locationToSetup}`} name="locationToSetup" onChange={this.onChange}/>
           </form>
 
       {/*  <ImageUploader
@@ -228,7 +226,8 @@ export default class UploadImage extends Component {
           ) }
           <br />
           { this.state.imgBLOB != null &&  (
-            <p style={{ marginTop:'3px'}}>{message}</p>
+            this.showMessageUpload()
+          //  <p style={{ marginTop:'3px', color:'green'}}>{message}</p>
           ) }
           <br />
         { this.showImageAfterUpload(imgBLOB) }
